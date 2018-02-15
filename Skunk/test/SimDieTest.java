@@ -4,13 +4,10 @@ import org.junit.Test;
 
 public class SimDieTest
 {
-
-	@Test
-	public void test_constructor()
-	{
-		SimDie d = new SimDie(new int[] {1,2,3});
-	}
-
+	/*
+	 * * removed test_constructor test because it is being tested in all the following tests
+	 */
+	
 	@Test
 	public void test_roll_once()
 	{
@@ -83,5 +80,5 @@ public class SimDieTest
 		d.roll();
 		assertEquals(d.getLastRoll(),1);
 	}
-	
+
 }

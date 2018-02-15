@@ -20,7 +20,7 @@ public class SimDie
 		return nextPos;
 	}
 
-	public void setNextPos(int nextPos)
+	private void setNextPos(int nextPos)
 	{
 		this.nextPos = nextPos;
 	}
@@ -30,12 +30,12 @@ public class SimDie
 		return diceSeq;
 	}
 
-	public void setDiceSeq(int[] diceSeq)
+	private void setDiceSeq(int[] diceSeq)
 	{
 		this.diceSeq = diceSeq;
 	}
 
-	public void setLastRoll(int lastRoll)
+	private void setLastRoll(int lastRoll)
 	{
 		this.lastRoll = lastRoll;
 	}

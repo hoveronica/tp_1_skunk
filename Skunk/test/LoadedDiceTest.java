@@ -14,10 +14,12 @@ public class LoadedDiceTest
 		gameDice.dice_roll();
 		assertEquals(gameDice.dice_getLastRoll_die1(),1);
 		assertEquals(gameDice.dice_getLastRoll_die2(),6);
+		assertEquals(gameDice.dice_getLastRoll_sum(),7);
 		gameDice.dice_roll();
 		gameDice.dice_roll();
 		assertEquals(gameDice.dice_getLastRoll_die1(),3);
 		assertEquals(gameDice.dice_getLastRoll_die2(),4);
+		assertEquals(gameDice.dice_getLastRoll_sum(),7);
 	}
 
 	@Test

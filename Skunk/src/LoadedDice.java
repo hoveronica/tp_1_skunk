@@ -25,4 +25,9 @@ public class LoadedDice
 	{
 		return d2.getLastRoll();
 	}
+	
+	public int dice_getLastRoll_sum() 
+	{
+		return d1.getLastRoll()+d2.getLastRoll();
+	}
 }

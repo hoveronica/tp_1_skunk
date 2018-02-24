@@ -1,5 +1,5 @@
 //class with two SimDie
-//Veronica's comment
+// b
 public class LoadedDice
 {
 	private SimDie d1;

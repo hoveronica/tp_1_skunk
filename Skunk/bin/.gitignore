@@ -1,6 +1,3 @@
-/LoadedDice.class
-/LoadedDiceTest.class
-/SimDie.class
-/SimDieTest.class
-/SkunkApp.class
-/SkunkAppTest.class
+/Dice.class
+/Roll.class
+/RollTest.class

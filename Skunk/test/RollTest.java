@@ -14,7 +14,9 @@ public class RollTest {
 	public void test_result() {
 		Dice testDice = new Dice (new RandomDie(),new RandomDie());
 		Roll testRoll = new Roll(testDice);
-		testRoll.roll_again(true);
+		testRoll.roll();
+		assertEquals(testRoll.getResult(),testDice.getLastRoll_sum());
+		testRoll.roll();
 		assertEquals(testRoll.getResult(),testDice.getLastRoll_sum());
 	}
 

@@ -4,7 +4,6 @@ public class Roll {
 	private int result=0;
 	private Dice d1;
 	private int numOfRoll=0;
-	private boolean rollAgain;
 	
 	public Roll(Dice gameDice){
 		this.d1=gameDice;
@@ -23,10 +22,8 @@ public class Roll {
 		else return false;
 	}
 	
-	public void roll_again(boolean roll){
-		while(roll==true){
-			numOfRoll++;
-		}
+	public void roll(){
+		numOfRoll++;
 	}
 	
 	public void endRoll(){

@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+/SkunkDie.class
+/SkunkPlayer.class
+/PlayerTest.class
+=======
 /Dice.class
 /Roll.class
 /RollTest.class
+>>>>>>> branch 'master' of https://github.com/hoveronica/tp_1_skunk.git
+/RandomDie.class
+/Turn.class

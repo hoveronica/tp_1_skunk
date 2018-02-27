@@ -1,15 +1,28 @@
-
+//score the roll and update the roll score
+//create a turn
+//make roll--> score the roll --> update score 
+//keep track of numOfRoll
+//ask if the turn is over(comes from skunk and player choice)
+//
 public class Turn
 {
-	private Roll gameRoll;
+	private Roll[] gameRoll; //array, how to keep track of Roll pos?
 	private int turnScore;
+	private int numOfRoll;
 	
 	
-	public Turn(Roll theRoll) {
-		this.gameRoll=theRoll;
+	public Turn() 
+	{
+		
 	}
 	
-	public void passDice() {
+	public Roll createRoll() {
+		Roll aRoll = new Roll(new Dice (new RandomDie(), new RandomDie()));
+		numOfRoll++;
+		return aRoll;
+	}
+	
+	/*public void passDice() {
 		if (gameRoll.checkDoubleSkunk()==true) {
 			turnScore = 0;
 		}else if(gameRoll.checkSkunk()==true) {
@@ -18,6 +31,7 @@ public class Turn
 			
 		}
 	}
+	*/
 	
 	public int addScore() {
 		

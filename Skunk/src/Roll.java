@@ -24,11 +24,9 @@ public class Roll {
 	}
 	
 	public void roll(){
-<<<<<<< HEAD
-			numOfRoll++;
-=======
+
 		numOfRoll++;
->>>>>>> branch 'master' of https://github.com/hoveronica/tp_1_skunk.git
+
 	}
 	
 	public void endRoll(){

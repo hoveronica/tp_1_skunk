@@ -8,7 +8,7 @@ public class RollTest {
 	public void test() {
 		fail("Not yet implemented");
 	}
-	*/
+	
 	
 	@Test
 	public void test_result() {
@@ -18,5 +18,7 @@ public class RollTest {
 		testRoll.roll();
 		assertEquals(testRoll.getResult(),testDice.getLastRoll_sum());
 	}
+	*/
+	
 
 }

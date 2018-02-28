@@ -34,7 +34,7 @@ public class Roll {
 			result += d1.getLastRoll_sum();
 		}
 	}
-	
+
 	public int getResult(){
 		return result;
 	}

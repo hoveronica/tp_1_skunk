@@ -34,8 +34,6 @@ public class Turn
 	*/
 	
 	public int addScore() {
-		
-		
 		return turnScore;
 	}
 	

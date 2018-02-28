@@ -3,6 +3,8 @@ public class Roll {
 
 	private int result;
 	private Dice d1;
+	private int numOfRoll;
+
 	
 	public Roll(Dice gameDice){
 		this.d1=gameDice;
@@ -21,12 +23,18 @@ public class Roll {
 		else return false;
 	}
 	
-	/*public void endRoll(){
+	public void roll(){
+
+		numOfRoll++;
+
+	}
+	
+	public void endRoll(){
 		for(int i=0; i<numOfRoll;i++){
 			result += d1.getLastRoll_sum();
 		}
-	}*/
-	
+	}
+
 	public int getResult(){
 		return result;
 	}

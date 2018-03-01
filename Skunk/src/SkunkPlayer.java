@@ -8,6 +8,7 @@ public class SkunkPlayer
 	private String player_name;
 	private int score;
 	private int playerTotalScore;
+	private Turn gameTurn;
 	
 	public SkunkPlayer(String name) {
 		this.player_name = name;
@@ -18,7 +19,7 @@ public class SkunkPlayer
 	}
 	//come from end of roll
 	public int scoreUpdate() {
-		score = playerTotalScore + Turn.turnScore;
+		score = playerTotalScore + gameTurn.getTurnScore();
 		return score;
 	}
 }

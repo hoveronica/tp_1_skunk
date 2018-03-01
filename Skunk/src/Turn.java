@@ -36,7 +36,7 @@ public class Turn
 	*/
 	
 	public int addScore() {
-		return turnScore;
+		return getTurnScore();
 	}
 	
 	public boolean turnStatus() {
@@ -53,4 +53,14 @@ public class Turn
 		return skunk;
 	
 }
+
+	public int getTurnScore()
+	{
+		return turnScore;
+	}
+
+	private void setTurnScore(int turnScore)
+	{
+		this.turnScore = turnScore;
+	}
 }

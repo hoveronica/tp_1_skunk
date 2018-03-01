@@ -8,35 +8,80 @@ import java.util.Scanner;
 //
 public class Turn
 {
-	private Roll[] gameRoll; //array, how to keep track of Roll pos?
+	private Roll[] gameRoll; 
 	private int turnScore;
 	private int numOfRoll;
 	
 	
 	public Turn() 
 	{
-		
+		gameRoll = new Roll[100];
+		turnScore = 0;
+		numOfRoll = 0;
 	}
 	
-	public Roll createRoll() {
+	//for testing purpose
+	public Roll createRoll_from_fakeDice() {
+		Roll testRoll = new Roll (new LoadedDice (new SimDie(new int[]{1,2,3,4,5,6}), new SimDie(new int[]{1,2,3,4,5,6})));
+		numOfRoll++;
+		gameRoll[numOfRoll-1] = testRoll;
+		return testRoll;
+	}
+	
+	public Roll createRoll() 
+	{
 		Roll aRoll = new Roll(new Dice (new RandomDie(), new RandomDie()));
 		numOfRoll++;
+		gameRoll[numOfRoll-1] = aRoll; //store the new Roll object into array of Roll
 		return aRoll;
 	}
-	
-	/*public void passDice() {
-		if (gameRoll.checkDoubleSkunk()==true) {
-			turnScore = 0;
-		}else if(gameRoll.checkSkunk()==true) {
-			turnScore = gameRoll.getResult();
-		}else {
-			
+
+	//for testing
+	public int addScore_test() 
+	{
+		int lastScore = 0;
+		for(int x=0; x < gameRoll.length-1; x++) 
+		{
+			if(gameRoll[x].checkDoubleSkunk_test()==true) //check double skunk first
+			{
+				turnScore = 0;
+				break;
+			}
+			else if(gameRoll[x].checkSkunk_test()==true) 
+			{
+				turnScore = lastScore;
+				break;
+			}
+			else
+			{
+				turnScore = lastScore + gameRoll[x].getResult();
+			}
 		}
+		return turnScore;
 	}
-	*/
 	
-	public int addScore() {
-		return getTurnScore();
+	// main score summation that check skunk/double skunk	
+	public int addScore() 
+	{
+		int lastScore = 0;
+		for(int x=0; x < gameRoll.length-1; x++) 
+		{
+			if(gameRoll[x].checkDoubleSkunk()==true) //check double skunk first
+			{
+				turnScore = 0;
+				break;
+			}
+			else if(gameRoll[x].checkSkunk()==true) 
+			{
+				turnScore = lastScore;
+				break;
+			}
+			else
+			{
+				turnScore = lastScore + gameRoll[x].getResult();
+			}
+		}
+		return turnScore;
 	}
 	
 	public boolean turnStatus() {
@@ -59,8 +104,4 @@ public class Turn
 		return turnScore;
 	}
 
-	private void setTurnScore(int turnScore)
-	{
-		this.turnScore = turnScore;
-	}
 }

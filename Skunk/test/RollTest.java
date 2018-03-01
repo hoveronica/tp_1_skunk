@@ -5,21 +5,17 @@ import org.junit.Test;
 public class RollTest {
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
-	
-	
-	/*
-	@Test
-	public void test_result() {
-		Dice testDice = new Dice (new RandomDie(),new RandomDie());
+	public void test_checkSkunk() {
+		LoadedDice testDice = new LoadedDice(new SimDie(new int[]{3,2,1}), new SimDie(new int[]{1,2,3})); 
 		Roll testRoll = new Roll(testDice);
-		testRoll.roll();
-		testRoll.roll();
-		assertEquals(testRoll.getResult(),testDice.getLastRoll_sum());
+		assertEquals(testRoll.checkSkunk_test(),true);
 	}
-	*/
-	
 
+	@Test
+	public void test_checkDoubleSkunk() {
+		LoadedDice testDice = new LoadedDice(new SimDie(new int[]{1,2,3}), new SimDie(new int[]{1,2,3})); 
+		Roll testRoll = new Roll(testDice);
+		assertEquals(testRoll.checkDoubleSkunk_test(),true);
+	}
+	
 }

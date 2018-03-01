@@ -1,8 +1,10 @@
+import java.util.Scanner;
+
 //score the roll and update the roll score
 //create a turn
 //make roll--> score the roll --> update score 
 //keep track of numOfRoll
-//ask if the turn is over(comes from skunk and player choice)
+//ask if the turn is over(comes from skunk and player choice) DONE
 //
 public class Turn
 {
@@ -37,4 +39,18 @@ public class Turn
 		return turnScore;
 	}
 	
+	public boolean turnStatus() {
+		Scanner answer = new Scanner(System.in);
+		System.out.println("Do you want to roll again?");
+		Object rolls = answer.next();
+		boolean skunk = false;
+		if (rolls.equals("yes")) {
+			skunk = false;
+		} 
+		if (rolls.equals("no")) {
+			skunk = true;
+	}
+		return skunk;
+	
+}
 }

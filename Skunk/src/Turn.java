@@ -22,7 +22,7 @@ public class Turn
 	
 	//for testing purpose
 	public Roll createRoll_from_fakeDice() {
-		Roll testRoll = new Roll (new LoadedDice (new SimDie(new int[]{1,2,3,4,5,6}), new SimDie(new int[]{1,2,3,4,5,6})));
+		Roll testRoll = new Roll (new LoadedDice (new SimDie(new int[]{1,2,3}), new SimDie(new int[]{4,5,6})));
 		numOfRoll++;
 		gameRoll[numOfRoll-1] = testRoll;
 		return testRoll;
@@ -55,6 +55,7 @@ public class Turn
 			else
 			{
 				turnScore = lastScore + gameRoll[x].getResult();
+				break;
 			}
 		}
 		return turnScore;
@@ -79,6 +80,7 @@ public class Turn
 			else
 			{
 				turnScore = lastScore + gameRoll[x].getResult();
+				break;
 			}
 		}
 		return turnScore;

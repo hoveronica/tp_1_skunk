@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 //score the roll and update the roll score
@@ -8,14 +9,14 @@ import java.util.Scanner;
 //
 public class Turn
 {
-	private Roll[] gameRoll; 
+	private ArrayList<Roll> gameRoll; 
 	private int turnScore;
 	private int numOfRoll;
 	
 	
 	public Turn() 
 	{
-		gameRoll = new Roll[100];
+		gameRoll = new ArrayList<Roll>(100);
 		turnScore = 0;
 		numOfRoll = 0;
 	}
@@ -24,7 +25,7 @@ public class Turn
 	public Roll createRoll_from_fakeDice() {
 		Roll testRoll = new Roll (new LoadedDice (new SimDie(new int[]{1,2,3}), new SimDie(new int[]{4,5,6})));
 		numOfRoll++;
-		gameRoll[numOfRoll-1] = testRoll;
+		gameRoll.add(testRoll);
 		return testRoll;
 	}
 	
@@ -32,7 +33,7 @@ public class Turn
 	{
 		Roll aRoll = new Roll(new Dice (new RandomDie(), new RandomDie()));
 		numOfRoll++;
-		gameRoll[numOfRoll-1] = aRoll; //store the new Roll object into array of Roll
+		gameRoll.add(aRoll); //store the new Roll object into array of Roll
 		return aRoll;
 	}
 
@@ -40,21 +41,21 @@ public class Turn
 	public int addScore_test() 
 	{
 		int lastScore = 0;
-		for(int x=0; x < gameRoll.length-1; x++) 
+		for(int x=0; x < gameRoll.size()-1; x++) 
 		{
-			if(gameRoll[x].checkDoubleSkunk_test()==true) //check double skunk first
+			if(gameRoll.get(x).checkDoubleSkunk_test()==true) //check double skunk first
 			{
 				turnScore = 0;
 				break;
 			}
-			else if(gameRoll[x].checkSkunk_test()==true) 
+			else if(gameRoll.get(x).checkSkunk_test()==true) 
 			{
 				turnScore = lastScore;
 				break;
 			}
 			else
 			{
-				turnScore = lastScore + gameRoll[x].getResult();
+				turnScore = lastScore + gameRoll.get(x).getResult();
 				break;
 			}
 		}
@@ -65,21 +66,21 @@ public class Turn
 	public int addScore() 
 	{
 		int lastScore = 0;
-		for(int x=0; x < gameRoll.length-1; x++) 
+		for(int x=0; x < gameRoll.size()-1; x++) 
 		{
-			if(gameRoll[x].checkDoubleSkunk()==true) //check double skunk first
+			if(gameRoll.get(x).checkDoubleSkunk()==true) //check double skunk first
 			{
 				turnScore = 0;
 				break;
 			}
-			else if(gameRoll[x].checkSkunk()==true) 
+			else if(gameRoll.get(x).checkSkunk()==true) 
 			{
 				turnScore = lastScore;
 				break;
 			}
 			else
 			{
-				turnScore = lastScore + gameRoll[x].getResult();
+				turnScore = lastScore + gameRoll.get(x).getResult();
 				break;
 			}
 		}

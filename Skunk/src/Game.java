@@ -8,14 +8,15 @@ public class Game
 	public Game() 
 	{
 		thePlayer = new ArrayList<SkunkPlayer>(100);
-		numOfPlayer = 2;
+		numOfPlayer = 0;
 	}
 	
-	public void addPlayer(String name) 
+	public SkunkPlayer addPlayer(String name) 
 	{
 		SkunkPlayer aPlayer = new SkunkPlayer(name);
 		thePlayer.add(aPlayer);
 		numOfPlayer++;
+		return aPlayer;
 	}
 	
 	//compare all players and get winning player's name + score
@@ -23,10 +24,11 @@ public class Game
 	{
 		SkunkPlayer winner = new SkunkPlayer("");
 		int winning_score = 0;
-		for(int x = 0; x < thePlayer.size()-1; x++)
+		for(int x = 0; x < thePlayer.size(); x++)
 		{
 			if(thePlayer.get(x).getScore()>winning_score)
 			{
+				winning_score = thePlayer.get(x).getScore();
 				winner = thePlayer.get(x);
 			}
 		}

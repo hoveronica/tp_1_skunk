@@ -49,6 +49,11 @@ public class SkunkPlayer
 	{
 		return numOfTurn;
 	}
+
+	public void setPlayerTotalScore(int playerTotalScore)
+	{
+		this.playerTotalScore = playerTotalScore;
+	}
 }
 
 

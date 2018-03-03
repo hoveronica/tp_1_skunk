@@ -71,17 +71,17 @@ public class Turn
 			if(gameRoll.get(x).checkDoubleSkunk()==true) //check double skunk first
 			{
 				turnScore = 0;
-				break;
+				continue;
 			}
 			else if(gameRoll.get(x).checkSkunk()==true) 
 			{
 				turnScore = lastScore;
-				break;
+				continue;
 			}
 			else
 			{
 				turnScore = lastScore + gameRoll.get(x).getResult();
-				break;
+				lastScore = turnScore;
 			}
 		}
 		return turnScore;

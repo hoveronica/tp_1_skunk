@@ -86,21 +86,6 @@ public class Turn
 		}
 		return turnScore;
 	}
-	
-	public boolean turnStatus() {
-		Scanner answer = new Scanner(System.in);
-		System.out.println("Do you want to roll again?");
-		Object rolls = answer.next();
-		boolean skunk = false;
-		if (rolls.equals("yes")) {
-			skunk = false;
-		} 
-		if (rolls.equals("no")) {
-			skunk = true;
-	}
-		return skunk;
-	
-}
 
 	public int getTurnScore()
 	{

@@ -5,6 +5,7 @@ public class Game
 {
 	private ArrayList<SkunkPlayer> thePlayer;
 	private ArrayList<Roll> rollList;
+	private SkunkPlayer currentPlayer;
 	private Turn aTurn;
 	private int numOfPlayer;
 	
@@ -12,6 +13,7 @@ public class Game
 	{
 		thePlayer = new ArrayList<SkunkPlayer>(100);
 		rollList = new ArrayList<Roll>(50);
+		currentPlayer = new SkunkPlayer("");
 		aTurn = new Turn();
 		numOfPlayer = 0;
 	}
@@ -44,6 +46,21 @@ public class Game
 	{
 		return numOfPlayer;
 	}
+	
+	/* can this help make code cleaner?
+	 * public void switchPlayer() 
+	{
+		for(int x=0; x<thePlayer.size(); x++)
+		{
+			if(thePlayer)
+		}
+		
+		currentPlayer = thePlayer.get(x);
+		if (currentPlayer.turnStatus()==false)
+		{
+			currentPlayer = 
+		}
+	}*/
 	
 	/*public int game_control(int proceed) 
 	{

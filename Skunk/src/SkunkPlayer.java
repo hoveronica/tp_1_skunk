@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 //in game class, track players
 
@@ -54,6 +55,22 @@ public class SkunkPlayer
 	{
 		this.playerTotalScore = playerTotalScore;
 	}
+	
+	public boolean turnStatus() {
+		Scanner answer = new Scanner(System.in);
+		System.out.println("Do you want to roll again?");
+		Object rolls = answer.next();
+		boolean skunk = false;
+		if (rolls.equals("yes")) {
+			skunk = false;
+		} 
+		if (rolls.equals("no")) {
+			skunk = true;
+		}
+		return skunk;
+	
+	}
+
 }
 
 

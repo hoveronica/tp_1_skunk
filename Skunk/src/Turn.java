@@ -41,7 +41,7 @@ public class Turn
 	public int addScore_test() 
 	{
 		int lastScore = 0;
-		for(int x=0; x < gameRoll.size()-1; x++) 
+		for(int x=0; x < gameRoll.size(); x++) 
 		{
 			if(gameRoll.get(x).checkDoubleSkunk_test()==true) //check double skunk first
 			{
@@ -66,7 +66,7 @@ public class Turn
 	public int addScore() 
 	{
 		int lastScore = 0;
-		for(int x=0; x < gameRoll.size()-1; x++) 
+		for(int x=0; x < gameRoll.size(); x++) 
 		{
 			if(gameRoll.get(x).checkDoubleSkunk()==true) //check double skunk first
 			{

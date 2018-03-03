@@ -23,7 +23,7 @@ public class Turn
 	
 	//for testing purpose
 	public Roll createRoll_from_fakeDice() {
-		Roll testRoll = new Roll (new LoadedDice (new SimDie(new int[]{1,2,3}), new SimDie(new int[]{4,5,6})));
+		Roll testRoll = new Roll (new LoadedDice (new SimDie(new int[]{2,2,3}), new SimDie(new int[]{4,5,6})));
 		numOfRoll++;
 		gameRoll.add(testRoll);
 		return testRoll;
@@ -46,17 +46,17 @@ public class Turn
 			if(gameRoll.get(x).checkDoubleSkunk_test()==true) //check double skunk first
 			{
 				turnScore = 0;
-				break;
+				continue;
 			}
 			else if(gameRoll.get(x).checkSkunk_test()==true) 
 			{
 				turnScore = lastScore;
-				break;
+				continue;
 			}
 			else
 			{
 				turnScore = lastScore + gameRoll.get(x).getResult();
-				break;
+				lastScore = turnScore;
 			}
 		}
 		return turnScore;

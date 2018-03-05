@@ -1,4 +1,6 @@
 /Dice.class
+/Game.class
+/GameTest.class
 /LoadedDice.class
 /LoadedDiceTest.class
 /PlayerTest.class
@@ -12,5 +14,3 @@
 /SkunkPlayer.class
 /Turn.class
 /TurnTest.class
-/Game.class
-/GameTest.class

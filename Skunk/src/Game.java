@@ -9,9 +9,9 @@ public class Game
 	private Turn aTurn;
 	private int numOfPlayer;
 	
-	public Game() 
+	public Game(ArrayList<SkunkPlayer> playerList) 
 	{
-		thePlayer = new ArrayList<SkunkPlayer>(100);
+		this.thePlayer = playerList;
 		rollList = new ArrayList<Roll>(50);
 		currentPlayer = new SkunkPlayer("");
 		aTurn = new Turn();
@@ -47,20 +47,16 @@ public class Game
 		return numOfPlayer;
 	}
 	
-	/* can this help make code cleaner?
-	 * public void switchPlayer() 
+	public void setCurrentPlayer(SkunkPlayer currentPlayer)
 	{
-		for(int x=0; x<thePlayer.size(); x++)
-		{
-			if(thePlayer)
-		}
-		
-		currentPlayer = thePlayer.get(x);
-		if (currentPlayer.turnStatus()==false)
-		{
-			currentPlayer = 
-		}
-	}*/
+		this.currentPlayer = currentPlayer;
+	}
+
+	public void switchPlayer(SkunkPlayer gamePlayer) 
+	{
+		gamePlayer = currentPlayer;
+		gamePlayer.setStatus(false);
+	}
 	
 	/*public int game_control(int proceed) 
 	{

@@ -12,6 +12,6 @@ public class PlayerTest
 		testTurn.createRoll_from_fakeDice();
 		testTurn.createRoll_from_fakeDice();
 		assertEquals(player1.scoreUpdate_test(),12);
-		assertEquals(player1.getScore_test(),12);
+		assertEquals(player1.getScore(),12);
 	}
 }

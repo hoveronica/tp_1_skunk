@@ -53,12 +53,6 @@ public class SkunkPlayer
 		return playerTotalScore;
 	}
 	
-	//for testing
-	public int getScore_test() 
-	{ 
-		return playerTotalScore;
-	}
-	
 	//getter for playerScore
 	public int getScore() 
 	{ 
@@ -76,13 +70,17 @@ public class SkunkPlayer
 	}
 	
 	public boolean turnStatus() {
-		return true;	
+		return status;	
 	}
-	
+		
+	public void setStatus(boolean status)
+	{
+		this.status = status;
+	}
+
 	//make current player status off and switch turn to another player
-	public boolean switchPlayer() {
+	public void switchPlayer() {
 		status = false;
-		return status;
 	}
 
 }

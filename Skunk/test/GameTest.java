@@ -1,5 +1,7 @@
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 public class GameTest
@@ -8,7 +10,7 @@ public class GameTest
 	@Test
 	public void test_num_of_player()
 	{
-		Game testGame = new Game();
+		Game testGame = new Game(new ArrayList<SkunkPlayer>(10));
 		testGame.addPlayer("Tom");
 		testGame.addPlayer("John");
 		testGame.addPlayer("Clark");
@@ -18,7 +20,7 @@ public class GameTest
 	@Test
 	public void test_winningPlayer()
 	{
-		Game testGame = new Game();
+		Game testGame = new Game(new ArrayList<SkunkPlayer>(10));
 		SkunkPlayer player1 = testGame.addPlayer("Tom");
 		SkunkPlayer player2 = testGame.addPlayer("John");
 		SkunkPlayer player3 = testGame.addPlayer("Clark");

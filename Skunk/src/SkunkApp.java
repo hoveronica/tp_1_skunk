@@ -131,7 +131,6 @@ public class SkunkApp
 	
 	private static void switchPlayer() 
 	{
-		SkunkPlayer currentPlayer = playerList.get(1);
 		player1Status = false;
 		player2Status = true;
 	}

@@ -9,16 +9,19 @@ public class SkunkPlayer
 	private int playerTotalScore;
 	private ArrayList<Turn> gameTurn;
 	private int numOfTurn;
+	private boolean status;
 	
 	public SkunkPlayer(String name) 
 	{
 		this.player_name = name;
 		playerTotalScore = 0;
 		gameTurn = new ArrayList<Turn>(100);
+		status = false;
 	}
 	
 	public Turn createTurn() 
 	{
+		status = true;
 		Turn aTurn = new Turn();
 		numOfTurn++;
 		gameTurn.add(aTurn);
@@ -30,13 +33,29 @@ public class SkunkPlayer
 		return player_name;
 	}
 
+	//for testing
+	public int scoreUpdate_test() 
+	{
+		for(int x=0 ; x < gameTurn.size() ; x++) 
+		{
+			playerTotalScore = playerTotalScore + gameTurn.get(x).addScore_test();
+		}
+		return playerTotalScore;
+	}
+	
 	//update score after turn
 	public int scoreUpdate() 
 	{
-		for(int x=0 ; x < gameTurn.size()-1 ; x++) 
+		for(int x=0 ; x < gameTurn.size() ; x++) 
 		{
-			playerTotalScore = playerTotalScore + gameTurn.get(x).getTurnScore();
+			playerTotalScore = playerTotalScore + gameTurn.get(x).addScore();
 		}
+		return playerTotalScore;
+	}
+	
+	//for testing
+	public int getScore_test() 
+	{ 
 		return playerTotalScore;
 	}
 	
@@ -58,6 +77,12 @@ public class SkunkPlayer
 	
 	public boolean turnStatus() {
 		return true;	
+	}
+	
+	//make current player status off and switch turn to another player
+	public boolean switchPlayer() {
+		status = false;
+		return status;
 	}
 
 }

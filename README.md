@@ -1,4 +1,4 @@
-SEIS 635 TP 1 SkunkApp
+#SEIS 635 TP 1 SkunkApp
 
 A Java program that allow two human players to play Skunk against one another, with the computer keeping score and enforcing the roles of the game.
 

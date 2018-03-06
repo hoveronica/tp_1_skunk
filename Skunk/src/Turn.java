@@ -55,6 +55,7 @@ public class Turn
 
 	public int getTurnScore()
 	{
+		turnScore = addScore();
 		return turnScore;
 	}
 	

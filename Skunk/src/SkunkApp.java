@@ -28,6 +28,7 @@ public class SkunkApp
 		while(active_player.turnStatus()==true) 
 		{
 			aGame.game_control(active_player);
+			
 		}
 	
 		System.out.println(playerList.get(0).getName() + " scores " + playerList.get(0).getScore() + " and " + playerList.get(1).getName() + " scores " + playerList.get(1).getScore());

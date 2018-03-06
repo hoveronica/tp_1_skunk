@@ -59,7 +59,7 @@ public class Game
 	public SkunkPlayer winningPlayer() 
 	{
 		SkunkPlayer winner = current_player;
-		int winning_score = current_player.scoreUpdate();
+		int winning_score = current_player.getScore();//getScore not correct
 		for(int x = 0; x < thePlayer.size(); x++)
 		{
 			if(thePlayer.get(x).getScore()>winning_score)
@@ -164,11 +164,12 @@ public class Game
 	public void score_report() {
 		//print each player's score
 		//System.out.printf();
+		System.out.println("Player1 score: " + thePlayer.get(0).getScore() + ". Player2 score: " + thePlayer.get(1).getScore());
 		System.out.println("The winner is: " + winningPlayer().getName() + ", with " + winning_score() + " points!");
 		System.out.println("==========================================================");
 
 	}
 
-
+	
 }
 

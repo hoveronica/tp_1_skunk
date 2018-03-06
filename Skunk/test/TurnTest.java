@@ -18,12 +18,12 @@ public class TurnTest
 	{
 		Turn testTurn = new Turn();
 		testTurn.createRoll_from_fakeDice();
+		testTurn.createSkunkRoll();
 		testTurn.addScore_test();
 		assertEquals(testTurn.getTurnScore(),6);
-		
-		testTurn.createRoll_from_fakeDice();
+		testTurn.createDoubleSkunk();
 		testTurn.addScore_test();
-		assertEquals(testTurn.getTurnScore(),12);
+		assertEquals(testTurn.getTurnScore(),0);
 	}
 
 }

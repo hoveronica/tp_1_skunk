@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//in game class, track players
-
 public class SkunkPlayer
 {
 	private String player_name;

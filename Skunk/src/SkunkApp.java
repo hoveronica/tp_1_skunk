@@ -12,35 +12,25 @@ public class SkunkApp
 		//create attributes
 		ArrayList<SkunkPlayer> playerList = new ArrayList<SkunkPlayer>(100);
 		int to_roll;
+		Game aGame = new Game(playerList);
 			
 		System.out.println("Welcome to Skunk game!");
-		
-		//create players
-		System.out.println("Player 1, what is your name?");
-		String player1_name = input.next();
-		SkunkPlayer player1 = new SkunkPlayer(player1_name);
-		System.out.println("Player 2, what is your name?");
-		String player2_name = input.next();
-		SkunkPlayer player2 = new SkunkPlayer(player2_name);
-		playerList.add(player1);
-		playerList.add(player2);
-		
-		//start rolling
-		Game aGame = new Game(playerList);
-		System.out.println("Let's get rolling!");
-		aGame.setCurrentPlayer(playerList.get(0));
-		playerList.get(0).setStatus(true);
 	
-		if(playerList.get(0).turnStatus()==true) 
-		{
-			aGame.game_control(playerList.get(0));
-		}
-		else if (playerList.get(1).turnStatus()==true)
-		{
-			aGame.game_control(playerList.get(1));
-		}
+		//create players
+		System.out.println("How many players are there in this game?");
+		int num_of_player = input.nextInt();
+		aGame.addPlayer(num_of_player);
+		SkunkPlayer active_player = aGame.getCurrent_player();
+			
+		//start rolling
+		System.out.println("Let's get rolling!");
 		
-		System.out.println(playerList.get(0).getName() + " scores " + player1.getScore() + " and " + playerList.get(1).getName() + " scores " + player2.getScore());
+		while(active_player.turnStatus()==true) 
+		{
+			aGame.game_control(active_player);
+		}
+	
+		System.out.println(playerList.get(0).getName() + " scores " + playerList.get(0).getScore() + " and " + playerList.get(1).getName() + " scores " + playerList.get(1).getScore());
 			
 		}
 	

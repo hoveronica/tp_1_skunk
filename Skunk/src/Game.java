@@ -60,6 +60,7 @@ public class Game
 		gamePlayer.setStatus(false);
 	}
 	
+	//not working right yet
 	public void game_control(SkunkPlayer aPlayer) 
 	{
 		aPlayer = thePlayer.get(0);

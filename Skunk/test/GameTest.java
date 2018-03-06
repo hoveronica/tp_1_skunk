@@ -1,5 +1,7 @@
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 public class GameTest
@@ -8,17 +10,17 @@ public class GameTest
 	@Test
 	public void test_num_of_player()
 	{
-		Game testGame = new Game();
-		testGame.addPlayer("Tom");
-		testGame.addPlayer("John");
-		testGame.addPlayer("Clark");
+		Game testGame = new Game(new ArrayList<SkunkPlayer>(10));
+		SkunkPlayer player1 = testGame.addPlayer("Tom");
+		SkunkPlayer player2 = testGame.addPlayer("John");
+		SkunkPlayer player3 = testGame.addPlayer("Clark");
 		assertEquals(testGame.getNumOfPlayer(),3);
 	}
 	
 	@Test
 	public void test_winningPlayer()
 	{
-		Game testGame = new Game();
+		Game testGame = new Game(new ArrayList<SkunkPlayer>(10));
 		SkunkPlayer player1 = testGame.addPlayer("Tom");
 		SkunkPlayer player2 = testGame.addPlayer("John");
 		SkunkPlayer player3 = testGame.addPlayer("Clark");
@@ -31,4 +33,15 @@ public class GameTest
 		assertEquals(testGame.winningPlayer(), "The winner is: Clark, with 50 points!");
 	}
 
+	@Test
+	public void test_switchPlayer()
+	{
+		Game testGame = new Game(new ArrayList<SkunkPlayer>(10));
+		testGame.addPlayer(3);
+		testGame.switchPlayer();
+		assertEquals(testGame.getCurrent_index(), 1);
+		testGame.switchPlayer();
+		testGame.switchPlayer();
+		assertEquals(testGame.getCurrent_index(),0);
+	}
 }

@@ -1,24 +1,25 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//in game class, track players
-
 public class SkunkPlayer
 {
 	private String player_name;
 	private int playerTotalScore;
 	private ArrayList<Turn> gameTurn;
 	private int numOfTurn;
+	private boolean status;
 	
 	public SkunkPlayer(String name) 
 	{
 		this.player_name = name;
 		playerTotalScore = 0;
 		gameTurn = new ArrayList<Turn>(100);
+		status = false;
 	}
 	
 	public Turn createTurn() 
 	{
+		status = true;
 		Turn aTurn = new Turn();
 		numOfTurn++;
 		gameTurn.add(aTurn);
@@ -30,12 +31,22 @@ public class SkunkPlayer
 		return player_name;
 	}
 
+	//for testing
+	public int scoreUpdate_test() 
+	{
+		for(int x=0 ; x < gameTurn.size() ; x++) 
+		{
+			playerTotalScore = playerTotalScore + gameTurn.get(x).addScore_test();
+		}
+		return playerTotalScore;
+	}
+	
 	//update score after turn
 	public int scoreUpdate() 
 	{
-		for(int x=0 ; x < gameTurn.size()-1 ; x++) 
+		for(int x=0 ; x < gameTurn.size() ; x++) 
 		{
-			playerTotalScore = playerTotalScore + gameTurn.get(x).getTurnScore();
+			playerTotalScore = playerTotalScore + gameTurn.get(x).addScore();
 		}
 		return playerTotalScore;
 	}
@@ -57,20 +68,17 @@ public class SkunkPlayer
 	}
 	
 	public boolean turnStatus() {
-		Scanner answer = new Scanner(System.in);
-		System.out.println("Do you want to roll again?");
-		Object rolls = answer.next();
-		boolean skunk = false;
-		if (rolls.equals("yes")) {
-			skunk = false;
-		} 
-		if (rolls.equals("no")) {
-			skunk = true;
-		}
-		return skunk;
-	
+		return status;	
+	}
+		
+	public void setStatus(boolean status)
+	{
+		this.status = status;
+	}
+
+	//make current player status off and switch turn to another player
+	public void switchPlayer() {
+		status = false;
 	}
 
 }
-
-

@@ -10,7 +10,7 @@ public class TurnTest
 	{
 		Turn testTurn = new Turn();
 		Roll testRoll = testTurn.createRoll_from_fakeDice();
-		assertEquals(testRoll.getResult(),5);
+		assertEquals(testRoll.getResult(),6);
 	}
 	
 	@Test
@@ -18,6 +18,10 @@ public class TurnTest
 	{
 		Turn testTurn = new Turn();
 		testTurn.createRoll_from_fakeDice();
+		testTurn.createSkunkRoll();
+		testTurn.addScore_test();
+		assertEquals(testTurn.getTurnScore(),6);
+		testTurn.createDoubleSkunk();
 		testTurn.addScore_test();
 		assertEquals(testTurn.getTurnScore(),0);
 	}

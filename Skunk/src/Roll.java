@@ -47,6 +47,10 @@ public class Roll {
 		else return false;
 	}
 
+	public String toString() {
+		return d1.getLastRoll_die1() + " & " + d1.getLastRoll_die2();
+	}
+	
 	public int getResult(){
 		return result;
 	}

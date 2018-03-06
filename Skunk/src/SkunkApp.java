@@ -31,97 +31,15 @@ public class SkunkApp
 		aGame.setCurrentPlayer(playerList.get(0));
 		playerList.get(0).setStatus(true);
 	
-		while(playerList.get(0).turnStatus()==true) 
+		if(playerList.get(0).turnStatus()==true) 
 		{
-			System.out.println(playerList.get(0).getName()+ ", do you want to make a roll? Enter \"1\" for yes or \"2\" for no.");
-			to_roll = input.nextInt();
-			Turn player1Turn = playerList.get(0).createTurn();
-			
-			if(to_roll==2) 
-			{
-				playerList.get(0).switchPlayer();
-				aGame.setCurrentPlayer(playerList.get(1));
-			}
-			
-			while(to_roll==1) 
-			{
-				Roll aRoll = player1Turn.createRoll();
-				if(aRoll.checkDoubleSkunk()==true) 
-				{
-					System.out.println("You rolled: " + aRoll.toString() + ". You rolled a double skunk.");
-					player1Turn.addScore();
-					playerList.get(0).switchPlayer();
-					aGame.setCurrentPlayer(playerList.get(1));
-					playerList.get(1).setStatus(true);
-					
-				}else if(aRoll.checkSkunk()==true)
-				{
-					System.out.println("You rolled: " + aRoll.toString() + ". You rolled a skunk.");
-					player1Turn.addScore();
-					playerList.get(0).switchPlayer();
-					aGame.setCurrentPlayer(playerList.get(1));
-					playerList.get(1).setStatus(true);
-					
-				}else
-				{
-					System.out.println("You rolled: " + aRoll.toString() + ". Total score of this roll is: " + aRoll.getResult());
-					player1Turn.addScore();
-					//System.out.println("player 1 score " + player1Turn.addScore());
-					System.out.println("player 1 score - test player" + player1.scoreUpdate());
-					
-					System.out.println("Do you want to make another roll? Enter \"1\" for yes or \"2\" for no.");
-					to_roll = input.nextInt();
-				}
-			}
-
-			
+			aGame.game_control(playerList.get(0));
 		}
-		while(playerList.get(1).turnStatus()==true)
+		else if (playerList.get(1).turnStatus()==true)
 		{
-			System.out.println(playerList.get(1).getName()+", do you want to make a roll? Enter \"1\" for yes or \"2\" for no.");
-			to_roll = input.nextInt();
-			Turn player2Turn = playerList.get(1).createTurn();
-			
-			if(to_roll==2) 
-			{
-				playerList.get(1).switchPlayer();
-				aGame.setCurrentPlayer(playerList.get(0));
-			}
-			
-			while(to_roll==1) 
-			{
-				Roll aRoll = player2Turn.createRoll();
-				if(aRoll.checkDoubleSkunk()==true) 
-				{
-					System.out.println("You rolled: " + aRoll.toString() + ". You rolled a double skunk.");
-					player2Turn.addScore();
-					playerList.get(1).switchPlayer();
-					aGame.setCurrentPlayer(playerList.get(0));
-					playerList.get(0).setStatus(true);
-					
-				}else if(aRoll.checkSkunk()==true)
-				{
-					System.out.println("You rolled: " + aRoll.toString() + ". You rolled a skunk.");
-					player2Turn.addScore();
-					playerList.get(1).switchPlayer();
-					aGame.setCurrentPlayer(playerList.get(0));
-					playerList.get(0).setStatus(true);
-					
-				}else
-				{
-					System.out.println("You rolled: " + aRoll.toString() + ". Total score of this roll is: " + aRoll.getResult());
-					player2Turn.addScore();
-					System.out.println("player 2 score " + player2Turn.addScore());
-					System.out.println("player 2 score - test player" + player2.scoreUpdate());
-					
-					System.out.println("Do you want to make another roll? Enter \"1\" for yes or \"2\" for no.");
-					to_roll = input.nextInt();
-				}
-			}
-
+			aGame.game_control(playerList.get(1));
 		}
 		
-	
 		System.out.println(playerList.get(0).getName() + " scores " + player1.getScore() + " and " + playerList.get(1).getName() + " scores " + player2.getScore());
 			
 		}

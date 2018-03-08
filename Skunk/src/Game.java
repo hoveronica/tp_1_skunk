@@ -105,7 +105,6 @@ public class Game
 		return current_player;
 	}
 	
-	//not working right yet
 	public void game_control(SkunkPlayer aPlayer) 
 	{
 		aPlayer = current_player;
@@ -114,7 +113,10 @@ public class Game
 
 		System.out.println(aPlayer.getName()+ ", do you want to make a roll? Enter \"1\" for yes or \"2\" for no.");
 		int to_roll = input.nextInt();
-		aTurn = aPlayer.createTurn();
+		
+		//whenever it passes, it creates a new Turn such that the score never adds up
+		//where to put the createTurn?
+		aTurn = aPlayer.createTurn(); 
 			
 		if(to_roll==2) 
 		{
@@ -130,6 +132,7 @@ public class Game
 				System.out.println("======================= SCOREBOARD =======================");
 				System.out.println("You rolled: " + aRoll.toString() + ". You rolled a double skunk.");
 				System.out.println("You lost all your points!");
+				//check_points();
 				score_report();
 				System.out.println("==========================================================");
 				to_roll = 2;
@@ -141,6 +144,7 @@ public class Game
 				System.out.println("======================= SCOREBOARD =======================");
 				System.out.println("You rolled: " + aRoll.toString() + ". You rolled a skunk.");
 				System.out.println("You lost all your points from this turn.");
+				//check_points();
 				score_report();
 				System.out.println("==========================================================");
 				to_roll=2;
@@ -151,6 +155,7 @@ public class Game
 			{
 				System.out.println("======================= SCOREBOARD =======================");
 				System.out.println("You rolled: " + aRoll.toString() + ". Total score of this roll is: " + aRoll.getResult());
+				check_points();
 				score_report();
 				System.out.println("Do you want to make another roll? Enter \"1\" for yes or \"2\" for no.");
 				to_roll = input.nextInt();
@@ -170,6 +175,17 @@ public class Game
 		System.out.println("The winner is: " + winningPlayer().getName() + ", with " + winning_score() + " points!");
 		System.out.println("==========================================================");
 
+	}
+	
+	//check how many points each player has and end game if one player reached 100
+	public void check_points() 
+	{
+		int point = winning_score();
+		if(point>=100) 
+		{
+			System.out.println(winningPlayer().getName() + " has " + winning_score() + " points! ");
+			//winner rolls again or pass to loser?
+		}
 	}
 
 	

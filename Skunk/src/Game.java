@@ -59,7 +59,7 @@ public class Game
 	public SkunkPlayer winningPlayer() 
 	{
 		SkunkPlayer winner = current_player;
-		int winning_score = current_player.getScore();//getScore not correct
+		int winning_score = current_player.getScore();
 		for(int x = 0; x < thePlayer.size(); x++)
 		{
 			if(thePlayer.get(x).getScore()>winning_score)
@@ -130,6 +130,7 @@ public class Game
 				System.out.println("======================= SCOREBOARD =======================");
 				System.out.println("You rolled: " + aRoll.toString() + ". You rolled a double skunk.");
 				System.out.println("You lost all your points!");
+				score_report();
 				System.out.println("==========================================================");
 				to_roll = 2;
 				nextPlayer = switchPlayer();
@@ -140,6 +141,7 @@ public class Game
 				System.out.println("======================= SCOREBOARD =======================");
 				System.out.println("You rolled: " + aRoll.toString() + ". You rolled a skunk.");
 				System.out.println("You lost all your points from this turn.");
+				score_report();
 				System.out.println("==========================================================");
 				to_roll=2;
 				nextPlayer = switchPlayer();

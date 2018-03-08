@@ -36,17 +36,18 @@ public class SkunkPlayer
 	{
 		for(int x=0 ; x < gameTurn.size() ; x++) 
 		{
-			playerTotalScore = playerTotalScore + gameTurn.get(x).addScore_test();
+			playerTotalScore = gameTurn.get(x).addScore_test();
 		}
 		return playerTotalScore;
 	}
 	
 	//update score after turn
+	//any addition turn should only add to existing score but not calculate from beginning again
 	public int scoreUpdate() 
 	{
 		for(int x=0 ; x < gameTurn.size() ; x++) 
 		{
-			playerTotalScore = playerTotalScore + gameTurn.get(x).addScore();
+			playerTotalScore = gameTurn.get(x).addScore();
 		}
 		return playerTotalScore;
 	}
@@ -54,6 +55,7 @@ public class SkunkPlayer
 	//getter for playerScore
 	public int getScore() 
 	{ 
+		playerTotalScore = scoreUpdate();
 		return playerTotalScore;
 	}
 	

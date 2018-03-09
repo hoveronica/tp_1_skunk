@@ -8,7 +8,7 @@ public class Game
 	private ArrayList<SkunkPlayer> thePlayer;
 	private SkunkPlayer current_player;
 	private int current_index;
-	private Turn aTurn;
+	private ArrayList<Turn> turn_list;
 	private int numOfPlayer;
 	
 	public Game(ArrayList<SkunkPlayer> playerList) 
@@ -16,7 +16,7 @@ public class Game
 		this.thePlayer = playerList;
 		current_player = new SkunkPlayer("");
 		current_index = thePlayer.indexOf(current_player);
-		aTurn = new Turn();
+		turn_list = new ArrayList<Turn>();
 		numOfPlayer = 0;
 	}
 	
@@ -116,7 +116,10 @@ public class Game
 		
 		//whenever it passes, it creates a new Turn such that the score never adds up
 		//where to put the createTurn?
-		aTurn = aPlayer.createTurn(); 
+		Round aRound = new Round();
+		Turn aTurn = aRound.createTurn(); 
+		turn_list.add(aTurn);
+		current_player.add_to_round(turn_list);
 			
 		if(to_roll==2) 
 		{

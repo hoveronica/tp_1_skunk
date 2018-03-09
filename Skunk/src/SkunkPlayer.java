@@ -5,25 +5,25 @@ public class SkunkPlayer
 {
 	private String player_name;
 	private int playerTotalScore;
-	private ArrayList<Turn> gameTurn;
+	private ArrayList<Turn> game_turn;
 	private int numOfTurn;
+	private Round game_round;
 	private boolean status;
 	
 	public SkunkPlayer(String name) 
 	{
 		this.player_name = name;
 		playerTotalScore = 0;
-		gameTurn = new ArrayList<Turn>(100);
+		game_turn = new ArrayList<Turn>();
+		numOfTurn = 0;
+		game_round = new Round();
 		status = false;
 	}
-	
-	public Turn createTurn() 
-	{
-		status = true;
-		Turn aTurn = new Turn();
-		numOfTurn++;
-		gameTurn.add(aTurn);
-		return aTurn;
+			
+	public void add_to_round(ArrayList<Turn> theTurn) {
+		Turn aTurn = game_round.createTurn();
+		theTurn.add(aTurn);
+		game_turn = theTurn;
 	}
 	
 	public String getName() 
@@ -34,10 +34,7 @@ public class SkunkPlayer
 	//for testing
 	public int scoreUpdate_test() 
 	{
-		for(int x=0 ; x < gameTurn.size() ; x++) 
-		{
-			playerTotalScore = gameTurn.get(x).addScore_test();
-		}
+		playerTotalScore = game_round.getRound_Score();
 		return playerTotalScore;
 	}
 	
@@ -45,10 +42,12 @@ public class SkunkPlayer
 	//any addition turn should only add to existing score but not calculate from beginning again
 	public int scoreUpdate() 
 	{
-		for(int x=0 ; x < gameTurn.size() ; x++) 
+		/*for(int x=0 ; x < gameTurn.size() ; x++) 
 		{
 			playerTotalScore = gameTurn.get(x).addScore();
 		}
+		*/
+		playerTotalScore = game_round.getRound_Score();
 		return playerTotalScore;
 	}
 	

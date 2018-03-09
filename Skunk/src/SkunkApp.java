@@ -17,8 +17,14 @@ public class SkunkApp
 		System.out.println("Welcome to Skunk game!");
 	
 		//create players
+		
 		System.out.println("How many players are there in this game?");
 		int num_of_player = input.nextInt();
+		while (num_of_player <= 1) {
+			System.out.println("Number of players must be greater than 1");
+			System.out.println("How many players are there in this game?");
+			num_of_player = input.nextInt();
+		}
 		aGame.addPlayer(num_of_player);
 		SkunkPlayer active_player = aGame.getCurrent_player();
 			

@@ -1,12 +1,14 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//score the roll and update the roll score
-//create a turn
-//make roll--> score the roll --> update score 
-//keep track of numOfRoll
-//ask if the turn is over(comes from skunk and player choice) DONE
-//
+/*
+ * score the roll and update the roll score
+ * create a turn
+ * make roll--> score the roll --> update score 
+ * keep track of numOfRoll
+ * ask if the turn is over(comes from skunk and player choice) DONE
+ */
+
 public class Turn
 {
 	private ArrayList<Roll> gameRoll; 

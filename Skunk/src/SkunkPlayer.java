@@ -5,62 +5,83 @@ public class SkunkPlayer
 {
 	private String player_name;
 	private int playerTotalScore;
-	private ArrayList<Turn> game_turn;
+	private ArrayList<Turn> gameTurn;
 	private int numOfTurn;
-	private Round game_round;
 	private boolean status;
 	
 	public SkunkPlayer(String name) 
 	{
 		this.player_name = name;
 		playerTotalScore = 0;
-		game_turn = new ArrayList<Turn>();
+		gameTurn = new ArrayList<Turn>();
 		numOfTurn = 0;
-		game_round = new Round();
 		status = false;
 	}
-			
-	public void add_to_round(ArrayList<Turn> theTurn) {
-		Turn aTurn = game_round.createTurn();
-		theTurn.add(aTurn);
-		game_turn = theTurn;
+	
+	public Turn createTurn()
+	{
+		status = true;
+		Turn aTurn = new Turn();
+		numOfTurn++;
+		gameTurn.add(aTurn);
+		return aTurn;
 	}
 	
-	public String getName() 
-	{
-		return player_name;
-	}
-
-	//for testing
-	public int scoreUpdate_test() 
-	{
-		playerTotalScore = game_round.getRound_Score();
-		return playerTotalScore;
-	}
-	
-	//update score after turn
-	//any addition turn should only add to existing score but not calculate from beginning again
+	/*
+	 * update score after turn
+	 * any addition turn should only add to existing score but not calculate from beginning again
+	 */
 	public int scoreUpdate() 
 	{
-		/*for(int x=0 ; x < gameTurn.size() ; x++) 
+		for(int x=0 ; x < gameTurn.size() ; x++) 
 		{
 			playerTotalScore = gameTurn.get(x).addScore();
 		}
-		*/
-		playerTotalScore = game_round.getRound_Score();
+		
 		return playerTotalScore;
 	}
+
+	//make current player status off and switch turn to another player
+	public void switchPlayer() {
+		status = false;
+	}
 	
-	//getter for playerScore
+	
+	//getters
 	public int getScore() 
 	{ 
 		playerTotalScore = scoreUpdate();
 		return playerTotalScore;
 	}
-	
+		
 	public int getNumOfTurn() 
 	{
 		return numOfTurn;
+	}
+
+	public String getName() 
+	{
+		return player_name;
+	}
+	
+	public boolean turnStatus() {
+		return status;	
+	}
+
+	//setters
+	public void setStatus(boolean status)
+	{
+		this.status = status;
+	}
+	
+	//for testing
+	public int scoreUpdate_test() 
+	{
+		for(int x=0 ; x < gameTurn.size() ; x++) 
+		{
+			playerTotalScore = gameTurn.get(x).addScore_test();
+		}
+		return playerTotalScore;
 	}
 
 	public void setPlayerTotalScore(int playerTotalScore)
@@ -68,18 +89,4 @@ public class SkunkPlayer
 		this.playerTotalScore = playerTotalScore;
 	}
 	
-	public boolean turnStatus() {
-		return status;	
-	}
-		
-	public void setStatus(boolean status)
-	{
-		this.status = status;
-	}
-
-	//make current player status off and switch turn to another player
-	public void switchPlayer() {
-		status = false;
-	}
-
 }

@@ -10,9 +10,11 @@ public class SkunkApp
 		Scanner input = new Scanner(System.in);
 
 		//create attributes
-		ArrayList<SkunkPlayer> playerList = new ArrayList<SkunkPlayer>(100);
+		ArrayList<SkunkPlayer> playerList = new ArrayList<SkunkPlayer>();
+		ArrayList<Round> roundList = new ArrayList<Round>();
 		int to_roll;
 		Game aGame = new Game(playerList);
+		
 			
 		System.out.println("Welcome to Skunk game!");
 	

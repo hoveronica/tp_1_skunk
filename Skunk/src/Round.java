@@ -1,36 +1,42 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+/*
+ * this class store each round of game. It has multiple players' turns' info
+ */
 
 public class Round
 {
-	private Turn game_turn;
+	private ArrayList<Turn> gameTurn; 
+	private int roundScore;
 	private int numOfTurn;
-	private ArrayList<Turn> turn_list;
-	private int Round_Score;
-
-	public Round() {
-		game_turn = new Turn();
+	
+	public Round(ArrayList<Turn> turn_list) {
+		this.gameTurn = turn_list;
+		roundScore = 0;
 		numOfTurn = 0;
-		this.turn_list = new ArrayList<Turn>();
-		Round_Score = 0;
 	}
 	
-	public Turn createTurn() 
+	public Turn one_turn()
 	{
 		Turn aTurn = new Turn();
+		gameTurn.add(aTurn);
 		numOfTurn++;
-		turn_list.add(aTurn);
 		return aTurn;
 	}
-		
-	public void update_Score() {
-		for(int x=0 ; x < turn_list.size() ; x++) 
+	
+	public int round_score() 
+	{
+		for(int x=0 ; x < gameTurn.size() ; x++) 
 		{
-			Round_Score += turn_list.get(x).getTurnScore();
+			roundScore = gameTurn.get(x).addScore();
 		}
+		return roundScore;
 	}
 	
-	public int getRound_Score() {
-		update_Score();
-		return Round_Score;
+	public int getRoundScore() {
+		return roundScore;
 	}
+	
 }

@@ -1,6 +1,7 @@
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Game
@@ -8,7 +9,7 @@ public class Game
 	private ArrayList<SkunkPlayer> thePlayer;
 	private SkunkPlayer current_player;
 	private int current_index;
-	private ArrayList<Turn> turn_list;
+	private Turn aTurn;
 	private int numOfPlayer;
 	
 	public Game(ArrayList<SkunkPlayer> playerList) 
@@ -16,7 +17,7 @@ public class Game
 		this.thePlayer = playerList;
 		current_player = new SkunkPlayer("");
 		current_index = thePlayer.indexOf(current_player);
-		turn_list = new ArrayList<Turn>();
+		aTurn = new Turn();
 		numOfPlayer = 0;
 	}
 	
@@ -81,11 +82,6 @@ public class Game
 	{
 		return numOfPlayer;
 	}
-	
-	public void setCurrentPlayer(SkunkPlayer currentPlayer)
-	{
-		this.current_player = currentPlayer;
-	}
 
 	//first set current player's status as false, set the next player in the list as current player and set his status as true
 	//it wraps around after the last player
@@ -104,7 +100,7 @@ public class Game
 		}	
 		return current_player;
 	}
-	
+		
 	public void game_control(SkunkPlayer aPlayer) 
 	{
 		aPlayer = current_player;
@@ -116,11 +112,8 @@ public class Game
 		
 		//whenever it passes, it creates a new Turn such that the score never adds up
 		//where to put the createTurn?
-		Round aRound = new Round();
-		Turn aTurn = aRound.createTurn(); 
-		turn_list.add(aTurn);
-		current_player.add_to_round(turn_list);
-			
+		aTurn = current_player.createTurn(); 
+					
 		if(to_roll==2) 
 		{
 			nextPlayer = switchPlayer();
@@ -130,14 +123,15 @@ public class Game
 		while(to_roll==1) 
 		{
 			Roll aRoll = aTurn.createRoll();
+			
 			if(aRoll.checkDoubleSkunk()==true) 
 			{
 				System.out.println("======================= SCOREBOARD =======================");
 				System.out.println("You rolled: " + aRoll.toString() + ". You rolled a double skunk.");
 				System.out.println("You lost all your points!");
 				//check_points();
+				//need to store this turn into a round
 				score_report();
-				System.out.println("==========================================================");
 				to_roll = 2;
 				nextPlayer = switchPlayer();
 				game_control(nextPlayer);
@@ -149,7 +143,6 @@ public class Game
 				System.out.println("You lost all your points from this turn.");
 				//check_points();
 				score_report();
-				System.out.println("==========================================================");
 				to_roll=2;
 				nextPlayer = switchPlayer();
 				game_control(nextPlayer);

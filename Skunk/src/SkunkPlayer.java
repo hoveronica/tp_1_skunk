@@ -18,6 +18,7 @@ public class SkunkPlayer
 		status = false;
 	}
 	
+	//change to round instead and score update will be get value from the hashmap
 	public Turn createTurn()
 	{
 		status = true;
@@ -46,8 +47,12 @@ public class SkunkPlayer
 		status = false;
 	}
 	
-	
 	//getters
+	public ArrayList<Turn> getGameTurn()
+	{
+		return gameTurn;
+	}
+	
 	public int getScore() 
 	{ 
 		playerTotalScore = scoreUpdate();
@@ -88,5 +93,5 @@ public class SkunkPlayer
 	{
 		this.playerTotalScore = playerTotalScore;
 	}
-	
+
 }

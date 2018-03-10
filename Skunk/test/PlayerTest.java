@@ -4,7 +4,7 @@ import org.junit.Test;
 
 public class PlayerTest
 {
-	/*@Test
+	@Test
 	public void test_scoreUpdate()
 	{		
 		SkunkPlayer player1 = new SkunkPlayer("Tom");
@@ -39,5 +39,5 @@ public class PlayerTest
 		testTurn.createRoll_from_fakeDice();
 		testTurn.createDoubleSkunk();
 		assertEquals(player1.scoreUpdate_test(),0);
-	}*/
+	}
 }

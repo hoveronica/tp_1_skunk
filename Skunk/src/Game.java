@@ -1,7 +1,7 @@
-
-
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Game
@@ -9,7 +9,7 @@ public class Game
 	private ArrayList<SkunkPlayer> thePlayer;
 	private SkunkPlayer current_player;
 	private int current_index;
-	private Turn aTurn;
+	private Round aRound;
 	private int numOfPlayer;
 	
 	public Game(ArrayList<SkunkPlayer> playerList) 
@@ -17,7 +17,7 @@ public class Game
 		this.thePlayer = playerList;
 		current_player = new SkunkPlayer("");
 		current_index = thePlayer.indexOf(current_player);
-		aTurn = new Turn();
+		aRound = new Round();
 		numOfPlayer = 0;
 	}
 	
@@ -44,6 +44,12 @@ public class Game
 		thePlayer.add(aPlayer);
 		numOfPlayer++;
 		return aPlayer;
+	}
+	
+	public Round createRound() 
+	{
+		
+		return aRound;
 	}
 	
 	public int getCurrent_index()
@@ -100,69 +106,6 @@ public class Game
 		}	
 		return current_player;
 	}
-		
-	public void game_control(SkunkPlayer aPlayer) 
-	{
-		aPlayer = current_player;
-		SkunkPlayer nextPlayer = new SkunkPlayer("");
-		Scanner input = new Scanner(System.in);
-
-		System.out.println(aPlayer.getName()+ ", do you want to make a roll? Enter \"1\" for yes or \"2\" for no.");
-		int to_roll = input.nextInt();
-		
-		//whenever it passes, it creates a new Turn such that the score never adds up
-		//where to put the createTurn?
-		aTurn = current_player.createTurn(); 
-					
-		if(to_roll==2) 
-		{
-			nextPlayer = switchPlayer();
-			game_control(nextPlayer);
-		}
-			
-		while(to_roll==1) 
-		{
-			Roll aRoll = aTurn.createRoll();
-			
-			if(aRoll.checkDoubleSkunk()==true) 
-			{
-				System.out.println("======================= SCOREBOARD =======================");
-				System.out.println("You rolled: " + aRoll.toString() + ". You rolled a double skunk.");
-				System.out.println("You lost all your points!");
-				//check_points();
-				//need to store this turn into a round
-				score_report();
-				to_roll = 2;
-				nextPlayer = switchPlayer();
-				game_control(nextPlayer);
-				
-			}else if(aRoll.checkSkunk()==true)
-			{
-				System.out.println("======================= SCOREBOARD =======================");
-				System.out.println("You rolled: " + aRoll.toString() + ". You rolled a skunk.");
-				System.out.println("You lost all your points from this turn.");
-				//check_points();
-				score_report();
-				to_roll=2;
-				nextPlayer = switchPlayer();
-				game_control(nextPlayer);
-				
-			}else
-			{
-				System.out.println("======================= SCOREBOARD =======================");
-				System.out.println("You rolled: " + aRoll.toString() + ". Total score of this roll is: " + aRoll.getResult());
-				check_points();
-				score_report();
-				System.out.println("Do you want to make another roll? Enter \"1\" for yes or \"2\" for no.");
-				to_roll = input.nextInt();
-				if(to_roll==2) 
-				{
-					nextPlayer = switchPlayer();
-					game_control(nextPlayer);
-				}
-			}
-		}
-	}
 	
 	public void score_report() {
 		//print each player's score
@@ -183,6 +126,91 @@ public class Game
 			//winner rolls again or pass to loser?
 		}
 	}
+	
+	public void game_for_2() 
+	{
+		SkunkPlayer player1 = thePlayer.get(0);
+		SkunkPlayer player2 = thePlayer.get(1);
+		
+		Scanner input = new Scanner(System.in);
+		
+		System.out.println(player1.getName()+ ", do you want to make a roll? Enter \"1\" for yes or \"2\" for no.");
+		int to_roll = input.nextInt();
+		
+	}
+	
+	
+		
+	public void game_control(SkunkPlayer aPlayer) 
+	{
+		aPlayer = current_player;
+		SkunkPlayer nextPlayer = new SkunkPlayer("");
+		ArrayList<Turn> current_player_turn = aPlayer.getGameTurn();
+		Map<SkunkPlayer, ArrayList<Turn>> round_score = aRound.getScoreboard();
+
+		Scanner input = new Scanner(System.in);
+
+		System.out.println(aPlayer.getName()+ ", do you want to make a roll? Enter \"1\" for yes or \"2\" for no.");
+		int to_roll = input.nextInt();
+		
+		//whenever it passes, it creates a new Turn such that the score never adds up
+		//where to put the createTurn?
+		Turn aTurn = current_player.createTurn(); 
+		current_player_turn.add(aTurn);
+					
+		if(to_roll==2) 
+		{
+			nextPlayer = switchPlayer();
+			game_control(nextPlayer);
+		}
+			
+		while(to_roll==1) 
+		{
+			Roll aRoll = aTurn.createRoll();
+			if(aRoll.checkDoubleSkunk()==true) 
+			{
+				System.out.println("======================= SCOREBOARD =======================");
+				System.out.println("You rolled: " + aRoll.toString() + ". You rolled a double skunk.");
+				System.out.println("You lost all your points!");
+				//check_points();
+				//need to store this turn into a round
+				score_report();
+				to_roll = 2;
+				nextPlayer = switchPlayer();
+				game_control(nextPlayer);
+				
+			}else if(aRoll.checkSkunk()==true)
+			{
+				System.out.println("======================= SCOREBOARD =======================");
+				System.out.println("You rolled: " + aRoll.toString() + ". You rolled a skunk.");
+				System.out.println("You lost all your points from this turn.");
+				//check_points();
+				round_score.put(aPlayer,current_player_turn);
+				score_report();
+				to_roll=2;
+				nextPlayer = switchPlayer();
+				game_control(nextPlayer);
+				
+			}else
+			{
+				System.out.println("======================= SCOREBOARD =======================");
+				System.out.println("You rolled: " + aRoll.toString() + ". Total score of this roll is: " + aRoll.getResult());
+				round_score.put(aPlayer,current_player_turn);
+				score_report();
+				//check_points();
+				
+				System.out.println("Do you want to make another roll? Enter \"1\" for yes or \"2\" for no.");
+				to_roll = input.nextInt();
+				if(to_roll==2) 
+				{
+					nextPlayer = switchPlayer();
+					game_control(nextPlayer);
+				}
+			}
+		}
+	}
+	
+	
 
 	
 }

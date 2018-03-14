@@ -15,6 +15,7 @@ public class Turn
 	private int turnScore;
 	private int numOfRoll;
 	private boolean isDoubleSkunk;
+	private boolean isSingleSkunk;
 	
 	public Turn() 
 	{
@@ -46,6 +47,7 @@ public class Turn
 			else if(gameRoll.get(x).checkSkunk()==true) 
 			{
 				turnScore = lastScore;
+				isSingleSkunk = true;
 				break;
 			}
 			else
@@ -62,6 +64,11 @@ public class Turn
 		return isDoubleSkunk;
 	}
 
+	public boolean isSingleSkunk()
+	{
+		return isSingleSkunk;
+	}
+	
 	public void setDoubleSkunk(boolean isDoubleSkunk)
 	{
 		this.isDoubleSkunk = isDoubleSkunk;
@@ -73,6 +80,9 @@ public class Turn
 		return turnScore;
 	}
 	
+	public Roll getLastRoll() {
+		return gameRoll.get(numOfRoll-1);
+	}
 	
 	/*
 	 * the following methods are for testing
@@ -122,4 +132,6 @@ public class Turn
 		}
 		return turnScore;
 	}
+
+	
 }

@@ -8,6 +8,7 @@ public class SkunkPlayer
 	private ArrayList<Turn> gameTurn;
 	private int numOfTurn;
 	private boolean status;
+	private int chip;
 	
 	public SkunkPlayer(String name) 
 	{
@@ -16,6 +17,7 @@ public class SkunkPlayer
 		gameTurn = new ArrayList<Turn>();
 		numOfTurn = 0;
 		status = false;
+		chip = 50;
 	}
 	
 	public Turn createTurn()
@@ -30,14 +32,26 @@ public class SkunkPlayer
 	public int scoreUpdate() 
 	{
 		if (gameTurn.size()==0) return 0;
-		playerTotalScore = 0;
+		//playerTotalScore = 0;
 		Turn final_turn = gameTurn.get(gameTurn.size()-1);
 		if(final_turn.isDoubleSkunk()) {
 			playerTotalScore = 0;
 			return 0;
+		}else if(final_turn.isSingleSkunk()) {
 		}
 			playerTotalScore += final_turn.addScore();
 		return playerTotalScore;
+	}
+	
+	public int chipUpdate() {
+		if(gameTurn.size()==0) return 50;
+		Turn final_turn = gameTurn.get(gameTurn.size()-1);
+		Roll theRoll = final_turn.getLastRoll();
+		if(theRoll.checkDoubleSkunk()==true) 
+			chip = chip-4;
+		else if(theRoll.checkSkunk()==true) 
+			chip = chip-1;
+		return chip;
 	}
 
 	//make current player status off and switch turn to another player
@@ -71,6 +85,12 @@ public class SkunkPlayer
 		return status;	
 	}
 
+	public int getChip()
+	{	
+		chip = chipUpdate();
+		return chip;
+	}
+
 	//setters
 	public void setStatus(boolean status)
 	{
@@ -81,7 +101,7 @@ public class SkunkPlayer
 	public int scoreUpdate_test() 
 	{
 		if (gameTurn.size()==0) return 0;
-		playerTotalScore = 0;
+		//playerTotalScore = 0;
 		Turn final_turn = gameTurn.get(gameTurn.size()-1);
 		if(final_turn.isDoubleSkunk()) {
 			playerTotalScore = 0;

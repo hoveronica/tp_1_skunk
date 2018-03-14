@@ -14,6 +14,7 @@ public class Turn
 	private ArrayList<Roll> gameRoll; 
 	private int turnScore;
 	private int numOfRoll;
+	private boolean isDoubleSkunk;
 	
 	public Turn() 
 	{
@@ -39,12 +40,13 @@ public class Turn
 			if(gameRoll.get(x).checkDoubleSkunk()==true) //check double skunk first
 			{
 				turnScore = 0;
-				continue;
+				isDoubleSkunk = true;
+				break;
 			}
 			else if(gameRoll.get(x).checkSkunk()==true) 
 			{
 				turnScore = lastScore;
-				continue;
+				break;
 			}
 			else
 			{
@@ -53,6 +55,16 @@ public class Turn
 			}
 		}
 		return turnScore;
+	}
+
+	public boolean isDoubleSkunk()
+	{
+		return isDoubleSkunk;
+	}
+
+	public void setDoubleSkunk(boolean isDoubleSkunk)
+	{
+		this.isDoubleSkunk = isDoubleSkunk;
 	}
 
 	public int getTurnScore()
@@ -94,6 +106,7 @@ public class Turn
 			if(gameRoll.get(x).checkDoubleSkunk_test()==true) //check double skunk first
 			{
 				turnScore = 0;
+				isDoubleSkunk = true;
 				continue;
 			}
 			else if(gameRoll.get(x).checkSkunk_test()==true) 

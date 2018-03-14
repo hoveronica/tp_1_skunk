@@ -27,8 +27,9 @@ public class PlayerTest
 		Turn testTurn = player1.createTurn();
 		testTurn.createRoll_from_fakeDice();
 		testTurn.createRoll_from_fakeDice();
+		testTurn.createRoll_from_fakeDice();
 		testTurn.createSkunkRoll();
-		assertEquals(player1.scoreUpdate_test(),12);
+		assertEquals(player1.scoreUpdate_test(),18);
 	}
 	
 	@Test
@@ -36,6 +37,7 @@ public class PlayerTest
 	{		
 		SkunkPlayer player1 = new SkunkPlayer("Tom");
 		Turn testTurn = player1.createTurn();
+		testTurn.createRoll_from_fakeDice();
 		testTurn.createRoll_from_fakeDice();
 		testTurn.createDoubleSkunk();
 		assertEquals(player1.scoreUpdate_test(),0);

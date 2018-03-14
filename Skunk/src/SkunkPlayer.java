@@ -18,7 +18,6 @@ public class SkunkPlayer
 		status = false;
 	}
 	
-	//change to round instead and score update will be get value from the hashmap
 	public Turn createTurn()
 	{
 		status = true;
@@ -28,17 +27,15 @@ public class SkunkPlayer
 		return aTurn;
 	}
 	
-	/*
-	 * update score after turn
-	 * any addition turn should only add to existing score but not calculate from beginning again
-	 */
 	public int scoreUpdate() 
 	{
-		for(int x=0 ; x < gameTurn.size() ; x++) 
-		{
-			playerTotalScore = gameTurn.get(x).addScore();
+		playerTotalScore = 0;
+		Turn final_turn = gameTurn.get(gameTurn.size()-1);
+		if(final_turn.isDoubleSkunk()) {
+			playerTotalScore = 0;
+			return 0;
 		}
-		
+			playerTotalScore += final_turn.addScore();
 		return playerTotalScore;
 	}
 
@@ -82,10 +79,13 @@ public class SkunkPlayer
 	//for testing
 	public int scoreUpdate_test() 
 	{
-		for(int x=0 ; x < gameTurn.size() ; x++) 
-		{
-			playerTotalScore = gameTurn.get(x).addScore_test();
+		playerTotalScore = 0;
+		Turn final_turn = gameTurn.get(gameTurn.size()-1);
+		if(final_turn.isDoubleSkunk()) {
+			playerTotalScore = 0;
+			return 0;
 		}
+			playerTotalScore += final_turn.addScore_test();
 		return playerTotalScore;
 	}
 

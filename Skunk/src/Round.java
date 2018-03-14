@@ -9,26 +9,29 @@ import java.util.Map;
 
 public class Round
 {
-	Map<SkunkPlayer, ArrayList<Turn>> scoreboard;
-	List<SkunkPlayer> players;
+	SkunkPlayer p1;
+	SkunkPlayer p2;
+	int p1_total;
+	int p2_total;
 	
 	public Round() {
-		scoreboard = new HashMap<SkunkPlayer,ArrayList<Turn>>();
-		players = new ArrayList<SkunkPlayer>();
+		p1 = new SkunkPlayer("");
+		p2 = new SkunkPlayer("");
+		p1_total = p1.getScore();
+		p2_total = p2.getScore();
 	}
 
-	public void store_the_round()
-	{			
-		for(int i=0; i<players.size(); i++)
-		{
-			scoreboard.put(players.get(i), players.get(i).getGameTurn());
-		}
-	}
-	
-	public Map<SkunkPlayer, ArrayList<Turn>> getScoreboard()
+	public int getP1_total()
 	{
-		return scoreboard;
+		return p1_total;
 	}
 
+	public int getP2_total()
+	{
+		return p2_total;
+	}
+
+	
+	
 	
 }

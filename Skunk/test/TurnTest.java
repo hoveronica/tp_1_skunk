@@ -18,12 +18,22 @@ public class TurnTest
 	{
 		Turn testTurn = new Turn();
 		testTurn.createRoll_from_fakeDice();
+		assertEquals(testTurn.addScore_test(),6);
 		testTurn.createSkunkRoll();
-		testTurn.addScore_test();
-		assertEquals(testTurn.getTurnScore(),6);
+		assertEquals(testTurn.addScore_test(),6);
 		testTurn.createDoubleSkunk();
-		testTurn.addScore_test();
-		assertEquals(testTurn.getTurnScore(),0);
+		assertEquals(testTurn.addScore_test(),0);
+	}
+	
+	@Test
+	public void test_addScore_noSkunk()
+	{
+		Turn testTurn = new Turn();
+		testTurn.createRoll_from_fakeDice();
+		testTurn.createRoll_from_fakeDice();
+		testTurn.createRoll_from_fakeDice();
+		testTurn.createRoll_from_fakeDice();
+		assertEquals(testTurn.addScore_test(),24);
 	}
 
 }

@@ -19,7 +19,6 @@ public class SkunkApp
 		System.out.println("Welcome to Skunk game!");
 	
 		//create players
-		
 		System.out.println("How many players are there in this game?");
 		int num_of_player = input.nextInt();
 		while (num_of_player <= 1) {
@@ -32,6 +31,8 @@ public class SkunkApp
 			
 		//start rolling
 		System.out.println("Let's get rolling!");
+		
+		//aGame.game_for_2();
 		
 		while(active_player.turnStatus()==true) 
 		{

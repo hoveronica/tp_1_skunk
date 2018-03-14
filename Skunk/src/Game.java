@@ -46,8 +46,6 @@ public class Game
 		return aPlayer;
 	}
 	
-	
-	
 	public int getCurrent_index()
 	{
 		return current_index;

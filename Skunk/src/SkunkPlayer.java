@@ -29,6 +29,7 @@ public class SkunkPlayer
 	
 	public int scoreUpdate() 
 	{
+		if (gameTurn.size()==0) return 0;
 		playerTotalScore = 0;
 		Turn final_turn = gameTurn.get(gameTurn.size()-1);
 		if(final_turn.isDoubleSkunk()) {
@@ -79,6 +80,7 @@ public class SkunkPlayer
 	//for testing
 	public int scoreUpdate_test() 
 	{
+		if (gameTurn.size()==0) return 0;
 		playerTotalScore = 0;
 		Turn final_turn = gameTurn.get(gameTurn.size()-1);
 		if(final_turn.isDoubleSkunk()) {

@@ -5,41 +5,18 @@ import org.junit.Test;
 public class PlayerTest
 {
 	@Test
-	public void test_scoreUpdate()
-	{		
-		SkunkPlayer player1 = new SkunkPlayer("Tom");
-		Turn testTurn = player1.createTurn();
-		testTurn.createRoll_from_fakeDice();
-		assertEquals(player1.scoreUpdate_test(),6);
-		testTurn.createRoll_from_fakeDice();
-		assertEquals(player1.scoreUpdate_test(),12);
-		testTurn.createRoll_from_fakeDice();
-		testTurn.createRoll_from_fakeDice();
-		testTurn.createRoll_from_fakeDice();
-		assertEquals(player1.scoreUpdate_test(),30);
-		
+	public void test_chipUpdate()
+	{
+		SkunkPlayer p1 = new SkunkPlayer("Tom");
+		Round testRound = p1.getRound();
+		Turn testTurn1 = testRound.createTurn();
+		testTurn1.createRoll_from_fakeDice();
+		assertEquals(p1.chipUpdate_test(),50);
+		testTurn1.createDoubleSkunk();
+		assertEquals(p1.chipUpdate_test(),46);
+		testTurn1.createDoubleSkunk();
+		assertEquals(p1.chipUpdate_test(),42);
 	}
 	
-	@Test
-	public void test_scoreUpdate_with_skunk()
-	{		
-		SkunkPlayer player1 = new SkunkPlayer("Tom");
-		Turn testTurn = player1.createTurn();
-		testTurn.createRoll_from_fakeDice();
-		testTurn.createRoll_from_fakeDice();
-		testTurn.createRoll_from_fakeDice();
-		testTurn.createSkunkRoll();
-		assertEquals(player1.scoreUpdate_test(),18);
-	}
 	
-	@Test
-	public void test_scoreUpdate_doubleSkunk()
-	{		
-		SkunkPlayer player1 = new SkunkPlayer("Tom");
-		Turn testTurn = player1.createTurn();
-		testTurn.createRoll_from_fakeDice();
-		testTurn.createRoll_from_fakeDice();
-		testTurn.createDoubleSkunk();
-		assertEquals(player1.scoreUpdate_test(),0);
-	}
 }

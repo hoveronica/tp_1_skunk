@@ -4,6 +4,7 @@ import org.junit.Test;
 
 public class RoundTest
 {
+
 	@Test
 	public void test_getRoundScore_singleTurn()
 	{
@@ -41,5 +42,6 @@ public class RoundTest
 		testTurn4.createSkunkRoll();
 		assertEquals(testRound.getRoundScore_test(),6);
 	}
+
 
 }

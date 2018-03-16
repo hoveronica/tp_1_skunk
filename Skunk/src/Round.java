@@ -30,15 +30,16 @@ public class Round
 				roundScore = 0;
 			else 
 				roundScore = gameTurn.get(0).getTurnScore();
-		}
-		for(int i=1; i < gameTurn.size(); i++)
-		{
-			if(gameTurn.get(i).isDoubleSkunk()) {
-				roundScore = 0;
-			}else if(gameTurn.get(i).isSingleSkunk()) {
-				roundScore = gameTurn.get(i-1).getTurnScore();
-			}else {
-				roundScore = gameTurn.get(i).getTurnScore();
+		}else {
+			for(int i=0; i < gameTurn.size(); i++)
+			{
+				if(gameTurn.get(i).isDoubleSkunk()) {
+					roundScore = 0;
+				}else if(gameTurn.get(i).isSingleSkunk()) {
+					roundScore = gameTurn.get(i-1).getTurnScore();
+				}else {
+					roundScore += gameTurn.get(i).getTurnScore();
+				}
 			}
 		}
 		return roundScore;

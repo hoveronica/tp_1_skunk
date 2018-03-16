@@ -24,6 +24,12 @@ public class Turn
 		return aRoll;
 	}
 
+	public Roll getLastRoll()
+	{	
+		Roll aRoll = gameRoll.get(gameRoll.size()-1);
+		return aRoll;
+	}
+	
 	public int addScore() 
 	{
 		int lastScore = 0;

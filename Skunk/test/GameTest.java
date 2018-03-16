@@ -7,7 +7,7 @@ import org.junit.Test;
 public class GameTest
 {
 
-	@Test
+	/*@Test
 	public void test_num_of_player()
 	{
 		Game testGame = new Game(new ArrayList<SkunkPlayer>(10));
@@ -15,9 +15,9 @@ public class GameTest
 		SkunkPlayer player2 = testGame.addPlayer("John");
 		SkunkPlayer player3 = testGame.addPlayer("Clark");
 		assertEquals(testGame.getNumOfPlayer(),3);
-	}
+	}*/
 	
-	@Test
+	/*@Test
 	public void test_winningPlayer()
 	{
 		Game testGame = new Game(new ArrayList<SkunkPlayer>(10));
@@ -31,7 +31,7 @@ public class GameTest
 		SkunkPlayer player4 = testGame.addPlayer("Becky");
 		player4.setPlayerTotalScore(10);
 		assertEquals(testGame.winningPlayer(), "The winner is: Clark, with 50 points!");
-	}
+	}*/
 
 	@Test
 	public void test_switchPlayer()

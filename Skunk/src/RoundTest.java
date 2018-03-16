@@ -4,7 +4,6 @@ import org.junit.Test;
 
 public class RoundTest
 {
-
 	@Test
 	public void test_getRoundScore_singleTurn()
 	{
@@ -35,9 +34,12 @@ public class RoundTest
 		
 		Turn testTurn3 = testRound.createTurn();
 		testTurn3.createRoll_from_fakeDice();
-		assertEquals(testRound.getRoundScore_test(),30);
-
+		assertEquals(testRound.getRoundScore_test(),6);
+		
+		Turn testTurn4 = testRound.createTurn();
+		testTurn4.createRoll_from_fakeDice();
+		testTurn4.createSkunkRoll();
+		assertEquals(testRound.getRoundScore_test(),6);
 	}
-	
 
 }

@@ -17,6 +17,10 @@ public class Turn
 	{
 		Roll aRoll = new Roll(new Dice (new RandomDie(), new RandomDie()));
 		gameRoll.add(aRoll); //store the new Roll object into array of Roll
+		if(aRoll.checkDoubleSkunk()==true) 
+			isDoubleSkunk=true;
+		else if(aRoll.checkSkunk()==true) 
+			isSingleSkunk=true;
 		return aRoll;
 	}
 
@@ -84,12 +88,14 @@ public class Turn
 	protected Roll createSkunkRoll() {
 		Roll testRoll = new Roll (new LoadedDice (new SimDie(new int[]{1,2,3}), new SimDie(new int[]{4,5,6})));
 		gameRoll.add(testRoll);
+		isSingleSkunk=true;
 		return testRoll;
 	}
 		
 	protected Roll createDoubleSkunk() {
 		Roll testRoll = new Roll (new LoadedDice (new SimDie(new int[]{1,2,3}), new SimDie(new int[]{1,2,3})));
 		gameRoll.add(testRoll);
+		isDoubleSkunk=true;
 		return testRoll;
 	}
 

@@ -134,8 +134,7 @@ public class Game
 		List<Turn> p1_list = new ArrayList<Turn>();
 		List<Turn> p2_list = new ArrayList<Turn>();
 		
-		while(player1.getScore()!=100 || player2.getScore()!=100) {
-			Round aRound = new Round();
+		while(player1.getScore()<=100 || player2.getScore()<=100) {
 			player1.setStatus(true);
 			System.out.println(player1.getName()+ ", do you want to make a roll? Enter \"1\" for yes or \"2\" for no.");
 			to_roll_p1 = input.nextInt();

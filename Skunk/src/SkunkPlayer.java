@@ -4,19 +4,19 @@ import java.util.Scanner;
 public class SkunkPlayer
 {
 	private String player_name;
-	private int playerTotalScore;
-	private ArrayList<Turn> gameTurn;
-	private int numOfTurn;
+	private ArrayList<Turn> player_turn;
+	private ArrayList<Round> player_round;
+	private int turnScore;
+	private int roundScore;
 	private boolean status;
+	private boolean winner;
 	private int chip;
 	
 	public SkunkPlayer(String name) 
 	{
 		this.player_name = name;
-		playerTotalScore = 0;
-		gameTurn = new ArrayList<Turn>();
-		numOfTurn = 0;
-		status = false;
+		player_turn = new ArrayList<Turn>();
+		player_round = new ArrayList<Round>();
 		chip = 50;
 	}
 	

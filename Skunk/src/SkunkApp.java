@@ -55,13 +55,7 @@ public class SkunkApp
 				}
 			}
 			System.out.println("Player 1 current score: " + p1.getScore());
-			/*p1_score.add(p1.getScore());
-			
-			for (int i=0; i<p1_score.size();i++) {
-				p1_total_score += p1_score.get(i);
-			}*/
-			
-			
+				
 			Turn p2_turn = p2.createTurn();
 			System.out.println(p2.getName() + ", do you want to make a roll? Enter \"1\" for yes or \"2\" for no.");
 			p2_roll = input.nextInt();
@@ -85,13 +79,7 @@ public class SkunkApp
 				}
 			}
 			System.out.println("Player 2 current score: " + p2.getScore());
-			/*p2_score.add(p1.getScore());
-			
-			for (int i=0; i<p2_score.size();i++) {
-				p2_total_score += p2_score.get(i);
-			}*/
-			
-			
+	
 			//final turn score of both player
 			System.out.println("======================= SCOREBOARD =======================");
 			System.out.println("Player 1 current score: " + p1.getScore() + ". Player 2 current score: " + p2.getScore());

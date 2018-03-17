@@ -23,6 +23,8 @@ public class Round
 	 * roundScore=0 when roll a doubleSkunk
 	 * turnScore is summation of multiple
 	 */
+	
+	//To fix: roundScore adds skunk turn. rework logic to not add 
 	public int addScore()
 	{
 		if(gameTurn.size()==1) {
@@ -30,14 +32,16 @@ public class Round
 				roundScore = 0;
 			else 
 				roundScore = gameTurn.get(0).getTurnScore();
-		}else {
+		}else if(gameTurn.size()>1) {
 			for(int i=0; i < gameTurn.size(); i++)
 			{
 				if(gameTurn.get(i).isDoubleSkunk()) {
 					roundScore = 0;
-				}else if(gameTurn.get(i).isSingleSkunk()) {
-					roundScore = gameTurn.get(i-1).getTurnScore();
-				}else {
+				}else if (gameTurn.get(i).isSingleSkunk()){
+					roundScore = gameTurn.get(i).getTurnScore();
+				}
+				else 
+				{
 					roundScore += gameTurn.get(i).getTurnScore();
 				}
 			}
@@ -67,14 +71,16 @@ public class Round
 				roundScore = 0;
 			else 
 				roundScore = gameTurn.get(0).getTurnScore_test();
-		}else {
+		}else if(gameTurn.size()>1){
 			for(int i=0; i < gameTurn.size(); i++)
 			{
 				if(gameTurn.get(i).isDoubleSkunk()) {
 					roundScore = 0;
-				}else if(gameTurn.get(i).isSingleSkunk()) {
-					roundScore = gameTurn.get(i-1).getTurnScore_test();
-				}else {
+				}
+				else if (gameTurn.get(i).isSingleSkunk()){
+					roundScore = gameTurn.get(i).getTurnScore();
+				}
+				else {
 					roundScore += gameTurn.get(i).getTurnScore_test();
 				}
 			}

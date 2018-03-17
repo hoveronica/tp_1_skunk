@@ -97,6 +97,13 @@ public class Turn
 		isSingleSkunk=true;
 		return testRoll;
 	}
+	
+	protected Roll createDeduce() {
+		Roll testRoll = new Roll (new LoadedDice (new SimDie(new int[]{1,2,3}), new SimDie(new int[]{2,5,6})));
+		gameRoll.add(testRoll);
+		isSingleSkunk=true;
+		return testRoll;
+	}
 		
 	protected Roll createDoubleSkunk() {
 		Roll testRoll = new Roll (new LoadedDice (new SimDie(new int[]{1,2,3}), new SimDie(new int[]{1,2,3})));

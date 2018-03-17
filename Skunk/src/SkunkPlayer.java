@@ -32,6 +32,13 @@ public class SkunkPlayer
 			chip = chip - 1;
 		return chip;
 	}
+	
+	//want to store up round score? not really, maybe kitty score
+	public Round another_round()
+	{
+		player_round = new Round();
+		return player_round;
+	}
 		
 	public int getTurnScore() 
 	{

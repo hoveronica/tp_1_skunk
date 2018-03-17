@@ -20,16 +20,6 @@ public class SkunkPlayer
 		chip = 50;
 	}
 	
-	public int getTurnScore() 
-	{
-		return turnScore;
-	}
-	
-	public int getRoundScore() 
-	{
-		return roundScore;
-	}
-	
 	public int chipUpdate() {
 		if(player_turn.size()==0) return 50;
 		Turn final_turn = player_turn.get(player_turn.size()-1);
@@ -41,6 +31,20 @@ public class SkunkPlayer
 		else if(theRoll.checkSkunk()==true) 
 			chip = chip - 1;
 		return chip;
+	}
+		
+	public int getTurnScore() 
+	{
+		if (player_turn.size()== 0) return 0;
+		Turn current_turn = player_turn.get(player_turn.size()-1);
+		turnScore = current_turn.getTurnScore();
+		return turnScore;
+	}
+	
+	public int getRoundScore() 
+	{
+		roundScore = player_round.getRoundScore();
+		return roundScore;
 	}
 	
 	//getters
@@ -69,16 +73,6 @@ public class SkunkPlayer
 		return status;
 	}
 
-	public void setTurnScore(int turnScore)
-	{
-		this.turnScore = turnScore;
-	}
-
-	public void setRoundScore(int roundScore)
-	{
-		this.roundScore = roundScore;
-	}
-
 	public int getChip()
 	{	
 		chip = chipUpdate();
@@ -96,6 +90,21 @@ public class SkunkPlayer
 		this.winner = winner;
 	}
 	
+	public void setTurnScore(int turnScore)
+	{
+		this.turnScore = turnScore;
+	}
+
+	public void setRoundScore(int roundScore)
+	{
+		this.roundScore = roundScore;
+	}
+
+	
+	
+	/*
+	 * the following methods are for testing
+	 */
 	public int chipUpdate_test() {
 		if(player_turn.size()==0) return 50;
 		Turn final_turn = player_turn.get(player_turn.size()-1);
@@ -107,5 +116,19 @@ public class SkunkPlayer
 		else if(theRoll.checkSkunk_test()==true) 
 			chip = chip - 1;
 		return chip;
+	}
+	
+	public int getTurnScore_test() 
+	{
+		if (player_turn.size()== 0) return 0;
+		Turn current_turn = player_turn.get(player_turn.size()-1);
+		turnScore = current_turn.getTurnScore_test();
+		return turnScore;
+	}
+	
+	public int getRoundScore_test() 
+	{
+		roundScore = player_round.getRoundScore_test();
+		return roundScore;
 	}
 }

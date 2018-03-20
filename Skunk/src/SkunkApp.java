@@ -38,34 +38,46 @@ public class SkunkApp
 		
 		//check all players' current score, if less than 100, game rolls. This is logic of 1 round
 		for(int i=0;i<num_of_player-1;i++) {
-			while(playerList.get(i).getRoundScore()<=100) {
-				SkunkPlayer active_player = aGame.getCurrent_player();
+			while(playerList.get(i).getRoundScore()<=100) {				
+				SkunkPlayer active_player = playerList.get(0);
+				
+				Round aRound = active_player.getRound();
+				ArrayList<Round> rounds = new ArrayList<Round>();
+				rounds.add(aRound);
+				for(int j=0; j<rounds.size();j++) {
+					System.out.println("Round " + rounds.indexOf(aRound)+1 + " starts!");
+				}
+							
 				System.out.println(active_player.getName() + ", do you want to make a roll? Enter \"1\" for yes or \"2\" for no.");
 				to_roll = input.nextInt();
-				Turn aTurn = active_player.getRound().createTurn();
+				Turn aTurn = aRound.createTurn();
 				while(to_roll==1) {
 					Roll aRoll = aTurn.createRoll();
 					if(aRoll.checkDoubleSkunk()==true) {
 						System.out.println("You rolled: " + aRoll.toString() + ". You rolled a double skunk.");
 						to_roll=2;
-						aGame.switchPlayer();
+						//aGame.switchPlayer();
 					}else if(aRoll.checkSkunk()==true) {
 						System.out.println("You rolled: " + aRoll.toString() + ". You rolled a skunk.");
 						to_roll=2;
-						aGame.switchPlayer();
+						//aGame.switchPlayer();
 					}else {
 						System.out.println("You rolled: " + aRoll.toString());
 						System.out.println("Do you want to roll again?");
 						to_roll = input.nextInt();
 						if(to_roll==2) {
-							aGame.switchPlayer();
+							continue;
+							//aGame.switchPlayer();
 						}
 					}
+					
 				}
 				System.out.println(active_player.getName()+ " turn score: " + active_player.getTurnScore() + ". Round score: " + 
-				active_player.getRoundScore() + ". Chip: " + active_player.getChip());
-				aGame.switchPlayer();
-				//aGame.score_report();
+						active_player.getRoundScore() + ". Chip: " + active_player.getChip());
+				aGame.setCurrent_player(aGame.getThePlayer().get(aGame.getCurrent_index()+1));
+				active_player = aGame.getCurrent_player();
+				
+				aGame.score_report();
 			}
 		}
 

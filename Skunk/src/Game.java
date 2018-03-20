@@ -45,6 +45,15 @@ public class Game
 		return aPlayer;
 	}
 	
+	public Round game_round() {
+		current_player = thePlayer.get(0);
+		Round aRound = current_player.getRound();
+		for (int i=0; i<thePlayer.size();i++) {
+			
+		}
+		return aRound;
+	}
+	
 	public int getCurrent_index()
 	{
 		return current_index;
@@ -53,6 +62,11 @@ public class Game
 	public SkunkPlayer getCurrent_player()
 	{
 		return current_player;
+	}
+
+	public void setCurrent_player(SkunkPlayer current_player)
+	{
+		this.current_player = current_player;
 	}
 
 	//compare all players and get winning player's name + score
@@ -116,20 +130,45 @@ public class Game
 		}
 	}
 	
-	public void game_control() 
+	public void one_round() 
 	{
+		setCurrent_player(thePlayer.get(0));
+		Round one_round = current_player.another_round();
+		boolean game = true;
 		//active player is first one on list after addPlayer method
 		SkunkPlayer nextPlayer = thePlayer.get(current_index + 1);
 		Scanner input = new Scanner(System.in);
 
-		
-		
-		System.out.println(current_player.getName()+ ", do you want to make a roll? Enter \"1\" for yes or \"2\" for no.");
-		int to_roll = input.nextInt();
-		
-		//whenever it passes, it creates a new Turn such that the score never adds up
-		//where to put the createTurn?
+		while(game) {
+			System.out.println(current_player.getName()+ ", do you want to make a roll? Enter \"1\" for yes or \"2\" for no.");
+			int to_roll = input.nextInt();
+			while(to_roll==1) {
+				Roll aRoll = one_round.createTurn().createRoll();
+				if(aRoll.checkDoubleSkunk()==true) {
+					System.out.println("You rolled: " + aRoll.toString() + ". You rolled a double skunk.");
+					to_roll=2;
+					current_player = nextPlayer;
+				}else if(aRoll.checkSkunk()==true) {
+					System.out.println("You rolled: " + aRoll.toString() + ". You rolled a skunk.");
+					to_roll=2;
+					current_player = nextPlayer;
+				}else {
+					System.out.println("You rolled: " + aRoll.toString());
+					System.out.println("Do you want to roll again?");
+					to_roll = input.nextInt();
+					if(to_roll==2) {
+						if(current_index==thePlayer.size()-1) {
+							game=false;
+						}else
+							current_player = nextPlayer;
+					}
+				}
+			}
+		}
+		score_report();
 	}
-	
+		
 }
+	
+
 

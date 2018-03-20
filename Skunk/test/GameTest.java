@@ -33,7 +33,7 @@ public class GameTest
 		assertEquals(testGame.winningPlayer(), "The winner is: Clark, with 50 points!");
 	}*/
 
-	@Test
+	/*@Test
 	public void test_switchPlayer()
 	{
 		Game testGame = new Game(new ArrayList<SkunkPlayer>(10));
@@ -43,5 +43,5 @@ public class GameTest
 		testGame.switchPlayer();
 		testGame.switchPlayer();
 		assertEquals(testGame.getCurrent_index(),0);
-	}
+	}*/
 }

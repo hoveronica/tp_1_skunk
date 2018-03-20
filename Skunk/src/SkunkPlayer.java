@@ -108,7 +108,6 @@ public class SkunkPlayer
 	}
 
 	
-	
 	/*
 	 * the following methods are for testing
 	 */

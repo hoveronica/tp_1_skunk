@@ -9,10 +9,11 @@ public class Game
 	private ArrayList<SkunkPlayer> thePlayer;
 	private SkunkPlayer current_player;
 	private int current_index;
+	private int kitty; 
 	
-	public Game(ArrayList<SkunkPlayer> playerList) 
+	public Game(ArrayList<SkunkPlayer> players) 
 	{
-		this.thePlayer = playerList;
+		this.thePlayer = players;
 		current_player = new SkunkPlayer("");
 		current_index = thePlayer.indexOf(current_player);
 	}
@@ -31,6 +32,11 @@ public class Game
 		current_player.setStatus(true);
 	}
 	
+	public ArrayList<SkunkPlayer> getThePlayer()
+	{
+		return thePlayer;
+	}
+
 	//method to add individual players
 	public SkunkPlayer addPlayer(String name)
 	{
@@ -91,9 +97,9 @@ public class Game
 	}
 	
 	public void score_report() {
-		//print each player's score
-		//System.out.printf();
-		System.out.println("Player1 score: " + thePlayer.get(0).getRoundScore() + ". Player2 score: " + thePlayer.get(1).getRoundScore());
+		for(int i=0; i<thePlayer.size(); i++) {
+			System.out.println(thePlayer.get(i).getName() + " score: " + thePlayer.get(i).getRoundScore());
+		}
 		System.out.println("The winner is: " + winner().getName() + ", with " + winning_score() + " points!");
 		System.out.println("==========================================================");
 
@@ -110,14 +116,15 @@ public class Game
 		}
 	}
 	
-	public void game_control(SkunkPlayer aPlayer) 
+	public void game_control() 
 	{
-		aPlayer = current_player;
-		
-		SkunkPlayer nextPlayer = new SkunkPlayer("");
+		//active player is first one on list after addPlayer method
+		SkunkPlayer nextPlayer = thePlayer.get(current_index + 1);
 		Scanner input = new Scanner(System.in);
 
-		System.out.println(aPlayer.getName()+ ", do you want to make a roll? Enter \"1\" for yes or \"2\" for no.");
+		
+		
+		System.out.println(current_player.getName()+ ", do you want to make a roll? Enter \"1\" for yes or \"2\" for no.");
 		int to_roll = input.nextInt();
 		
 		//whenever it passes, it creates a new Turn such that the score never adds up

@@ -7,10 +7,75 @@ public class SkunkApp
 
 	public static void main(String[] args)
 	{
+		ArrayList<SkunkPlayer> playerList = new ArrayList<SkunkPlayer>();
+		int to_roll;
+		Game aGame = new Game(playerList);
+		playerList = aGame.getThePlayer();
+		
 		//initiates scanner object
 		Scanner input = new Scanner(System.in);
 		System.out.println("Welcome to Skunk game!");
 		
+		System.out.println("Do you want to read the instructions of the game? [Y/N]");
+		String read = input.next();
+		if(read.equalsIgnoreCase("y")) {
+			System.out.println("INSTRUCTIONS.");
+			System.out.println("Game on!");
+		}
+		else if (read.equalsIgnoreCase("n"))
+			System.out.println("Game on!");
+		
+		//create players
+		System.out.println("How many players are there in this game?");
+		int num_of_player = input.nextInt();
+		while (num_of_player <= 1) {
+			System.out.println("Number of players must be greater than 1");
+			System.out.println("How many players are there in this game?");
+			num_of_player = input.nextInt();
+		}
+		aGame.addPlayer(num_of_player);
+		System.out.println("Let's get rolling!");
+		
+		//check all players' current score, if less than 100, game rolls. This is logic of 1 round
+		for(int i=0;i<num_of_player-1;i++) {
+			while(playerList.get(i).getRoundScore()<=100) {
+				SkunkPlayer active_player = aGame.getCurrent_player();
+				System.out.println(active_player.getName() + ", do you want to make a roll? Enter \"1\" for yes or \"2\" for no.");
+				to_roll = input.nextInt();
+				Turn aTurn = active_player.getRound().createTurn();
+				while(to_roll==1) {
+					Roll aRoll = aTurn.createRoll();
+					if(aRoll.checkDoubleSkunk()==true) {
+						System.out.println("You rolled: " + aRoll.toString() + ". You rolled a double skunk.");
+						to_roll=2;
+						aGame.switchPlayer();
+					}else if(aRoll.checkSkunk()==true) {
+						System.out.println("You rolled: " + aRoll.toString() + ". You rolled a skunk.");
+						to_roll=2;
+						aGame.switchPlayer();
+					}else {
+						System.out.println("You rolled: " + aRoll.toString());
+						System.out.println("Do you want to roll again?");
+						to_roll = input.nextInt();
+						if(to_roll==2) {
+							aGame.switchPlayer();
+						}
+					}
+				}
+				System.out.println(active_player.getName()+ " turn score: " + active_player.getTurnScore() + ". Round score: " + 
+				active_player.getRoundScore() + ". Chip: " + active_player.getChip());
+				aGame.switchPlayer();
+				//aGame.score_report();
+			}
+		}
+
+		
+		
+		
+		
+		
+		
+		/* logic for two players
 		//create players
 		System.out.println("Please select 2 players for this game.");
 		System.out.println("Player 1, please enter your name:");
@@ -185,45 +250,7 @@ public class SkunkApp
 					}
 				}
 			}
-		}
-	}
-		
-		
-		
-		/* will come back to this logic for final implementation
-		 * 
-		//create attributes
-		ArrayList<SkunkPlayer> playerList = new ArrayList<SkunkPlayer>();
-		ArrayList<Round> roundList = new ArrayList<Round>();
-		int to_roll;
-		Game aGame = new Game(playerList);
-			
-		System.out.println("Welcome to Skunk game!");
+		}*/
 	
-		//create players
-		System.out.println("How many players are there in this game?");
-		int num_of_player = input.nextInt();
-		while (num_of_player <= 1) {
-			System.out.println("Number of players must be greater than 1");
-			System.out.println("How many players are there in this game?");
-			num_of_player = input.nextInt();
-		}
-		aGame.addPlayer(num_of_player);
-		SkunkPlayer active_player = aGame.getCurrent_player();
-			
-		//start rolling
-		System.out.println("Let's get rolling!");
-		
-		//aGame.game_for_2();
-		
-		while(active_player.turnStatus()==true) 
-		{
-			aGame.game_control(active_player);
-		}
-		System.out.println(playerList.get(0).getName() + " scores " + playerList.get(0).getRoundScore() + " and " + playerList.get(1).getName() + " scores " + playerList.get(1).getRoundScore());
-		*/
-		
-		
-		
-		
-		}
+	}	
+}

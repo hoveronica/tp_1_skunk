@@ -26,21 +26,26 @@ public class RoundTest
 		Turn testTurn1 = testRound.createTurn();
 		testTurn1.createRoll_from_fakeDice();
 		testTurn1.createRoll_from_fakeDice();
-		//assertEquals(testRound.getRoundScore_test(),12);
+		assertEquals(testRound.getRoundScore_test(),12);
 		
 		Turn testTurn2 = testRound.createTurn();
 		testTurn2.createRoll_from_fakeDice();
 		testTurn2.createDoubleSkunk();
-		//assertEquals(testRound.getRoundScore_test(),0);
+		assertEquals(testRound.getRoundScore_test(),0);
 		
 		Turn testTurn3 = testRound.createTurn();
 		testTurn3.createRoll_from_fakeDice();
-		//assertEquals(testRound.getRoundScore_test(),6);
+		assertEquals(testRound.getRoundScore_test(),6);
 		
 		Turn testTurn4 = testRound.createTurn();
 		testTurn4.createRoll_from_fakeDice();
 		testTurn4.createSkunkRoll();
-		//assertEquals(testRound.getRoundScore_test(),6);
+		assertEquals(testRound.getRoundScore_test(),6);
+		
+		Turn testTurn5 = testRound.createTurn();
+		testTurn5.createRoll_from_fakeDice();
+		testTurn5.createRoll_from_fakeDice();
+		//assertEquals(testRound.getRoundScore_test(),18);
 	}
 
 	/*
@@ -61,13 +66,13 @@ public class RoundTest
 		Turn testTurn3 = testRound.createTurn();
 		testTurn3.createRoll_from_fakeDice();
 		testTurn3.createRoll_from_fakeDice();
-		assertEquals(testRound.getRoundScore_test(),18);
+		//assertEquals(testRound.getRoundScore_test(),18);
 		
 		Turn testTurn4 = testRound.createTurn();
 		testTurn4.createRoll_from_fakeDice();
-		assertEquals(testRound.getRoundScore_test(),24);
+		//assertEquals(testRound.getRoundScore_test(),24);
 		testTurn4.createSkunkRoll();
-		assertEquals(testRound.getRoundScore_test(),18);
+		//assertEquals(testRound.getRoundScore_test(),18);
 	}	
 	
 	@Test
@@ -77,11 +82,11 @@ public class RoundTest
 		Turn testTurn1 = testRound.createTurn();
 		testTurn1.createRoll_from_fakeDice();
 		testTurn1.createDoubleSkunk();
-		//assertEquals(testRound.getRoundScore_test(),0);
+		assertEquals(testRound.getRoundScore_test(),0);
 		
 		Turn testTurn2 = testRound.createTurn();
 		testTurn2.createRoll_from_fakeDice();
-		//assertEquals(testRound.getRoundScore_test(),6);
+		assertEquals(testRound.getRoundScore_test(),6);
 	}	
 	
 	@Test

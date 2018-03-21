@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class SkunkPlayer
 {
 	private String player_name;
-	private Round player_round;
+	private ArrayList<Round> player_round;
 	private ArrayList<Turn> player_turn;
 	private int turnScore;
 	private int roundScore;
@@ -15,8 +15,8 @@ public class SkunkPlayer
 	public SkunkPlayer(String name) 
 	{
 		this.player_name = name;
-		player_round = new Round();
-		player_turn = player_round.getGameTurn();
+		player_round = new ArrayList<Round>();
+		player_turn = new ArrayList<Turn>();
 		chip = 50;
 	}
 	
@@ -36,8 +36,9 @@ public class SkunkPlayer
 	//want to store up round score? not really, maybe kitty score
 	public Round another_round()
 	{
-		player_round = new Round();
-		return player_round;
+		Round aRound = new Round();
+		player_round.add(aRound);
+		return aRound;
 	}
 		
 	public int getTurnScore() 
@@ -50,7 +51,9 @@ public class SkunkPlayer
 	
 	public int getRoundScore() 
 	{
-		roundScore = player_round.getRoundScore();
+		for(int i=0; i<player_round.size();i++) {
+			roundScore += player_round.get(i).getRoundScore();
+		}
 		return roundScore;
 	}
 	
@@ -65,14 +68,15 @@ public class SkunkPlayer
 		return player_name;
 	}
 
-	public Round getRound()
+	public Round get_currentRound()
 	{
-		return player_round;
+		Round current_round = player_round.get(player_round.size()-1);
+		return current_round;
 	}
 
 	public ArrayList<Turn> getPlayer_turn()
 	{
-		player_turn = player_round.getGameTurn();
+		player_turn = get_currentRound().getGameTurn();
 		return player_turn;
 	}
 
@@ -133,9 +137,9 @@ public class SkunkPlayer
 		return turnScore;
 	}
 	
-	public int getRoundScore_test() 
+	/*public int getRoundScore_test() 
 	{
 		roundScore = player_round.getRoundScore_test();
 		return roundScore;
-	}
+	}*/
 }

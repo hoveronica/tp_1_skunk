@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import java.util.List;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class SkunkApp 
@@ -11,13 +11,18 @@ public class SkunkApp
 		int to_roll;
 		Game aGame = new Game(playerList);
 		playerList = aGame.getThePlayer();
-		
+		int num_of_player;
+	
 		//initiates scanner object
 		Scanner input = new Scanner(System.in);
 		System.out.println("Welcome to Skunk game!");
 		
 		System.out.println("Do you want to read the instructions of the game? [Y/N]");
 		String read = input.next();
+		while(!read.equalsIgnoreCase("y") && !read.equalsIgnoreCase("n")){
+			System.out.println("Incorrect input! Please enter [Y/N].");
+			read = input.next();
+		}
 		if(read.equalsIgnoreCase("y")) {
 			System.out.println("INSTRUCTIONS.");
 			System.out.println("Game on!");
@@ -26,11 +31,17 @@ public class SkunkApp
 			System.out.println("Game on!");
 		
 		//create players
-		System.out.println("How many players are there in this game?");
-		int num_of_player = input.nextInt();
+		try {
+			System.out.println("How many players are there in this game?");
+		num_of_player = input.nextInt();
 		while (num_of_player <= 1) {
 			System.out.println("Number of players must be greater than 1");
 			System.out.println("How many players are there in this game?");
+			num_of_player = input.nextInt();
+		}
+			
+		}catch(InputMismatchException ex) {
+			System.out.println("You must put in a number! How many players are there in this game?");
 			num_of_player = input.nextInt();
 		}
 		aGame.addPlayer(num_of_player);
@@ -39,45 +50,7 @@ public class SkunkApp
 		//check all players' current score, if less than 100, game rolls. This is logic of 1 round
 		for(int i=0;i<num_of_player-1;i++) {
 			while(playerList.get(i).getRoundScore()<=100) {				
-				SkunkPlayer active_player = playerList.get(0);
-				
-				Round aRound = active_player.getRound();
-				ArrayList<Round> rounds = new ArrayList<Round>();
-				rounds.add(aRound);
-				for(int j=0; j<rounds.size();j++) {
-					System.out.println("Round " + rounds.indexOf(aRound)+1 + " starts!");
-				}
-							
-				System.out.println(active_player.getName() + ", do you want to make a roll? Enter \"1\" for yes or \"2\" for no.");
-				to_roll = input.nextInt();
-				Turn aTurn = aRound.createTurn();
-				while(to_roll==1) {
-					Roll aRoll = aTurn.createRoll();
-					if(aRoll.checkDoubleSkunk()==true) {
-						System.out.println("You rolled: " + aRoll.toString() + ". You rolled a double skunk.");
-						to_roll=2;
-						//aGame.switchPlayer();
-					}else if(aRoll.checkSkunk()==true) {
-						System.out.println("You rolled: " + aRoll.toString() + ". You rolled a skunk.");
-						to_roll=2;
-						//aGame.switchPlayer();
-					}else {
-						System.out.println("You rolled: " + aRoll.toString());
-						System.out.println("Do you want to roll again?");
-						to_roll = input.nextInt();
-						if(to_roll==2) {
-							continue;
-							//aGame.switchPlayer();
-						}
-					}
-					
-				}
-				System.out.println(active_player.getName()+ " turn score: " + active_player.getTurnScore() + ". Round score: " + 
-						active_player.getRoundScore() + ". Chip: " + active_player.getChip());
-				aGame.setCurrent_player(aGame.getThePlayer().get(aGame.getCurrent_index()+1));
-				active_player = aGame.getCurrent_player();
-				
-				aGame.score_report();
+				aGame.one_round();
 			}
 		}
 
@@ -264,5 +237,6 @@ public class SkunkApp
 			}
 		}*/
 	
-	}	
+	}
 }
+

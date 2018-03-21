@@ -111,6 +111,7 @@ public class Game
 	}
 	
 	public void score_report() {
+		System.out.println("==========================================================");
 		for(int i=0; i<thePlayer.size(); i++) {
 			System.out.println(thePlayer.get(i).getName() + " score: " + thePlayer.get(i).getRoundScore());
 		}
@@ -169,6 +170,3 @@ public class Game
 	}
 		
 }
-	
-
-

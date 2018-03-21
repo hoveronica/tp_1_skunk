@@ -31,6 +31,7 @@ public class SkunkApp
 			System.out.println("Game on!");
 		
 		//create players
+		//make it to 2-player game
 		do {
 			try {
 				System.out.println("How many players are there in this game?");
@@ -49,23 +50,16 @@ public class SkunkApp
 		aGame.addPlayer(num_of_player);
 		System.out.println("Let's get rolling!");
 		
-		System.out.println("Do you want another Game? [Y/N]");
-		String game = input.next();
-		while(game.equalsIgnoreCase("y")) {
-			//check all players' current score, if less than 100, game rolls. This is logic of 1 round
-			for(int i=0;i<num_of_player-1;i++) {
-				while(playerList.get(i).getRoundScore()<=100) {				
-					aGame.one_round();
-				}
-				if(playerList.get(i).getRoundScore()>=100) {
-					aGame.last_round();
-				}
+		for(int i=0;i<num_of_player;i++) {
+			while(playerList.get(i).getRoundScore()<=100) {				
+				aGame.one_round();
+			}
+			if(playerList.get(i).getRoundScore()>=100) {
+				aGame.last_round();
 			}
 		}
-		if(game.equalsIgnoreCase("n")){
-			System.out.println("Thanks for playing skunk game! Hope you enjoyed the match!");
-		}
-
+		
+		System.out.println("Thanks for playing skunk game! Hope you enjoyed the match!");
 	}
 }
 

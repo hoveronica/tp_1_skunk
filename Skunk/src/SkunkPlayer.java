@@ -137,9 +137,11 @@ public class SkunkPlayer
 		return turnScore;
 	}
 	
-	/*public int getRoundScore_test() 
+	public int getRoundScore_test() 
 	{
-		roundScore = player_round.getRoundScore_test();
+		for(int i=0; i<player_round.size();i++) {
+			roundScore += player_round.get(i).getRoundScore_test();
+		}
 		return roundScore;
-	}*/
+	}
 }

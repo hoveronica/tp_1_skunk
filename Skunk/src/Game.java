@@ -189,6 +189,7 @@ public class Game
 					if(aRoll.checkDoubleSkunk()==true) {
 						System.out.println("You rolled: " + aRoll.toString() + ". You rolled a double skunk.");
 						to_roll=2;
+						game=false;
 						/*if(current_index==thePlayer.size()-1) {
 							game=false;
 						}else {
@@ -199,6 +200,7 @@ public class Game
 					}else if(aRoll.checkSkunk()==true) {
 						System.out.println("You rolled: " + aRoll.toString() + ". You rolled a skunk.");
 						to_roll=2;
+						game=false;
 						/*if(current_index==thePlayer.size()-1) {
 							game=false;
 						}else {
@@ -213,6 +215,7 @@ public class Game
 						if(to_roll==1) {
 							aRoll = current_player.getPlayer_turn().get((current_player.getPlayer_turn().size())-1).createRoll();
 						}else if(to_roll==2) {
+							game=false;
 							/*if(current_index==thePlayer.size()-1) {
 								game=false;
 							}else
@@ -227,7 +230,7 @@ public class Game
 		}else {
 			current_player = thePlayer.get(1);
 			setCurrent_index(1);
-			SkunkPlayer nextPlayer = thePlayer.get(current_index + 1);
+			SkunkPlayer nextPlayer = thePlayer.get(0);
 			boolean game = true;
 			while(game) {
 				System.out.println(current_player.getName()+ ", do you want to make a roll? Enter \"1\" for yes or \"2\" for no.");
@@ -237,6 +240,7 @@ public class Game
 					if(aRoll.checkDoubleSkunk()==true) {
 						System.out.println("You rolled: " + aRoll.toString() + ". You rolled a double skunk.");
 						to_roll=2;
+						game=false;
 						/*if(current_index==thePlayer.size()-1) {
 							game=false;
 						}else {
@@ -247,6 +251,7 @@ public class Game
 					}else if(aRoll.checkSkunk()==true) {
 						System.out.println("You rolled: " + aRoll.toString() + ". You rolled a skunk.");
 						to_roll=2;
+						game=false;
 						/*if(current_index==thePlayer.size()-1) {
 							game=false;
 						}else {
@@ -261,6 +266,7 @@ public class Game
 						if(to_roll==1) {
 							aRoll = current_player.getPlayer_turn().get((current_player.getPlayer_turn().size())-1).createRoll();
 						}else if(to_roll==2) {
+							game=false;
 							/*if(current_index==thePlayer.size()-1) {
 								game=false;
 							}else

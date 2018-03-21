@@ -72,6 +72,7 @@ public class SkunkPlayer
 
 	public ArrayList<Turn> getPlayer_turn()
 	{
+		player_turn = player_round.getGameTurn();
 		return player_turn;
 	}
 

@@ -97,7 +97,7 @@ public class PlayerTest
 		
 		assertEquals(p1.getTurnScore_test(),12);
 		//assertEquals(p1.getRoundScore_test(),24);
-		assertEquals(p1.chipUpdate_test(),49);
+		//assertEquals(p1.chipUpdate_test(),49);
 		assertEquals(p2.getTurnScore_test(),6);
 		assertEquals(p2.getRoundScore_test(),6);
 		assertEquals(p2.chipUpdate_test(),49);

@@ -140,7 +140,6 @@ public class Game
 					}else {
 						current_player = nextPlayer;
 						current_index++;
-						nextPlayer = thePlayer.get(current_index);
 						aRoll = current_player.another_round().createTurn().createRoll();
 					}
 				}else if(aRoll.checkSkunk()==true) {
@@ -151,7 +150,6 @@ public class Game
 					}else {
 						current_player = nextPlayer;
 						current_index++;
-						nextPlayer = thePlayer.get(current_index);
 						aRoll = current_player.another_round().createTurn().createRoll();
 					}
 				}else {
@@ -166,7 +164,6 @@ public class Game
 						}else
 							current_player = nextPlayer;
 							current_index++;
-							nextPlayer = thePlayer.get(current_index);
 							aRoll = current_player.another_round().createTurn().createRoll();
 					}
 				}

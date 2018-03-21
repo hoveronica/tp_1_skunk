@@ -11,7 +11,7 @@ public class SkunkApp
 		int to_roll;
 		Game aGame = new Game(playerList);
 		playerList = aGame.getThePlayer();
-		int num_of_player;
+		int num_of_player =	0;
 	
 		//initiates scanner object
 		Scanner input = new Scanner(System.in);
@@ -31,19 +31,21 @@ public class SkunkApp
 			System.out.println("Game on!");
 		
 		//create players
-		try {
-			System.out.println("How many players are there in this game?");
-		num_of_player = input.nextInt();
-		while (num_of_player <= 1) {
-			System.out.println("Number of players must be greater than 1");
-			System.out.println("How many players are there in this game?");
-			num_of_player = input.nextInt();
-		}
-			
-		}catch(InputMismatchException ex) {
-			System.out.println("You must put in a number! How many players are there in this game?");
-			num_of_player = input.nextInt();
-		}
+		do {
+			try {
+				System.out.println("How many players are there in this game?");
+				num_of_player = input.nextInt();
+				while (num_of_player <= 1) {
+					System.out.println("Number of players must be greater than 1");
+					System.out.println("How many players are there in this game?");
+					num_of_player = input.nextInt();
+				}
+			}catch(InputMismatchException ex) {
+				System.out.println("You must put in a number! How many players are there in this game?");
+				num_of_player = input.nextInt();
+			}
+		}while(num_of_player<=1);
+		
 		aGame.addPlayer(num_of_player);
 		System.out.println("Let's get rolling!");
 		

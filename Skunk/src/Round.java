@@ -17,6 +17,11 @@ public class Round
 		return aTurn;
 	}
 	
+	public Turn get_currentTurn() {
+		Turn current_turn = gameTurn.get(gameTurn.size()-1);
+		return current_turn;
+	}
+	
 	/*
 	 * store up total after each turn, which is until roll is skunk/double skunk or when player declines to roll
 	 * summation of each turn's turnScore

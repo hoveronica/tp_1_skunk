@@ -50,14 +50,11 @@ public class SkunkApp
 		aGame.addPlayer(num_of_player);
 		System.out.println("Let's get rolling!");
 		
-		for(int i=0;i<num_of_player;i++) {
-			while(playerList.get(i).getRoundScore()<=100) {				
-				aGame.one_round();
-			}
-			if(playerList.get(i).getRoundScore()>=100) {
-				aGame.last_round();
-			}
+		while(aGame.check_score()==false) {
+			aGame.one_round();
 		}
+		if(aGame.check_score()==true)
+			aGame.last_round();
 		
 		System.out.println("Thanks for playing skunk game! Hope you enjoyed the match!");
 	}

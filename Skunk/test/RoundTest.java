@@ -114,5 +114,4 @@ public class RoundTest
 		assertEquals(testRound2.getRoundScore_test(),12);
 	}
 	
-	
 }

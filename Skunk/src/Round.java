@@ -42,7 +42,7 @@ public class Round
 				}
 				else 
 				{
-					roundScore = gameTurn.get(i).getTurnScore();
+					roundScore += gameTurn.get(i).getTurnScore();
 				}
 			}
 		}
@@ -81,7 +81,7 @@ public class Round
 					roundScore = gameTurn.get(i-1).getTurnScore_test();
 				}
 				else {
-					roundScore = gameTurn.get(i).getTurnScore_test();
+					roundScore += gameTurn.get(i).getTurnScore_test();
 				}
 			}
 		}

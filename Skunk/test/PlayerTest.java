@@ -5,32 +5,30 @@ import org.junit.Test;
 public class PlayerTest
 {
 	@Test
-	public void test_chipUpdate()
+	public void test_getChip()
 	{
 		SkunkPlayer p1 = new SkunkPlayer("Tom");
-		Round testRound = p1.get_currentRound();
-		Turn testTurn1 = testRound.createTurn();
+		Turn testTurn1 = p1.get_currentRound().createTurn();
 		testTurn1.createRoll_from_fakeDice();
-		assertEquals(p1.chipUpdate_test(),50);
+		assertEquals(p1.getChip_test(),50);
 		testTurn1.createDoubleSkunk();
-		assertEquals(p1.chipUpdate_test(),46);
+		assertEquals(p1.getChip_test(),46);
 		testTurn1.createDoubleSkunk();
-		assertEquals(p1.chipUpdate_test(),42);
+		assertEquals(p1.getChip_test(),42);
 	}
 	
 	@Test
 	public void test_turnScore()
 	{
 		SkunkPlayer p1 = new SkunkPlayer("Tom");
-		Round testRound = p1.get_currentRound();
-		Turn testTurn1 = testRound.createTurn();
+		Turn testTurn1 = p1.get_currentRound().createTurn();
 		testTurn1.createRoll_from_fakeDice();
 		testTurn1.createRoll_from_fakeDice();
 		assertEquals(p1.getTurnScore_test(),12);
 		testTurn1.createDoubleSkunk();
 		assertEquals(p1.getTurnScore_test(),0);
 		
-		Turn testTurn2 = testRound.createTurn();
+		Turn testTurn2 = p1.get_currentRound().createTurn();
 		testTurn2.createRoll_from_fakeDice();
 		testTurn2.createRoll_from_fakeDice();
 		assertEquals(p1.getTurnScore_test(),12);
@@ -40,25 +38,23 @@ public class PlayerTest
 	public void test_RoundScore()
 	{
 		SkunkPlayer p1 = new SkunkPlayer("Tom");
-		Round testRound = p1.get_currentRound();
-		Turn testTurn1 = testRound.createTurn();
+		Turn testTurn1 = p1.get_currentRound().createTurn();
 		testTurn1.createRoll_from_fakeDice();
 		testTurn1.createRoll_from_fakeDice();
 		
-		Turn testTurn2 = testRound.createTurn();
+		Turn testTurn2 = p1.get_currentRound().createTurn();
 		testTurn2.createRoll_from_fakeDice();
 		testTurn2.createSkunkRoll();
 		assertEquals(p1.getRoundScore_test(),12);
 		
-		//hasn't started a new round object
-		Round testRound2 = p1.another_round();
-		Turn testTurn3 = testRound2.createTurn();
+		//round 2
+		Turn testTurn3 = p1.another_round().createTurn();
 		testTurn3.createRoll_from_fakeDice();
 		assertEquals(p1.getRoundScore_test(),6);
 		testTurn3.createDoubleSkunk();
 		assertEquals(p1.getRoundScore_test(),0);
 		
-		Turn testTurn4 = testRound2.createTurn();
+		Turn testTurn4 = p1.get_currentRound().createTurn();
 		testTurn4.createRoll_from_fakeDice();
 		testTurn4.createRoll_from_fakeDice();
 		assertEquals(p1.getRoundScore_test(),12);
@@ -80,27 +76,32 @@ public class PlayerTest
 		p2_testTurn1.createRoll_from_fakeDice();
 		p2_testTurn1.createSkunkRoll();
 		
-		//assertEquals(p1.getRoundScore_test(),12);
-		//assertEquals(p2.getRoundScore_test(),0);
-		assertEquals(p1.chipUpdate_test(),50);
-		assertEquals(p2.chipUpdate_test(),49);
+		assertEquals(p1.getRoundScore_test(),12);
+		assertEquals(p2.getRoundScore_test(),0);
+		assertEquals(p1.getChip_test(),50);
+		assertEquals(p2.getChip_test(),49);
 		
 		Turn p1_testTurn2 = p1_testRound.createTurn();
 		p1_testTurn2.createRoll_from_fakeDice();
 		p1_testTurn2.createSkunkRoll();
 		Turn p2_testTurn2 = p2_testRound.createTurn();
 		p2_testTurn2.createRoll_from_fakeDice();
+		p1.chipUpdate_test();
+		p2.chipUpdate_test();
 		
 		Turn p1_testTurn3 = p1_testRound.createTurn();
 		p1_testTurn3.createRoll_from_fakeDice();
 		p1_testTurn3.createRoll_from_fakeDice();
+		Turn p2_testTurn3 = p2_testRound.createTurn();
+		p2_testTurn3.createRoll_from_fakeDice();
+		p2_testTurn3.createDeduce();
 		
 		assertEquals(p1.getTurnScore_test(),12);
-		//assertEquals(p1.getRoundScore_test(),24);
-		//assertEquals(p1.chipUpdate_test(),49);
-		assertEquals(p2.getTurnScore_test(),6);
+		assertEquals(p1.getRoundScore_test(),24);
+		assertEquals(p1.getChip_test(),49);
+		assertEquals(p2.getTurnScore_test(),0);
 		assertEquals(p2.getRoundScore_test(),6);
-		assertEquals(p2.chipUpdate_test(),49);
+		assertEquals(p2.getChip_test(),47);
 	}
 	
 }

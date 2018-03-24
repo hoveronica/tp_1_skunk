@@ -3,20 +3,23 @@ import java.util.Scanner;
 
 public class SkunkPlayer
 {
+	//need to separate round list and initiates a round in the beginning. --> turn list does not work
 	private String player_name;
 	private ArrayList<Round> player_round;
+	private Round aRound;
 	private ArrayList<Turn> player_turn;
 	private int turnScore;
 	private int roundScore;
 	private boolean status;
-	private boolean winner;
 	private int chip;
 	
 	public SkunkPlayer(String name) 
 	{
 		this.player_name = name;
 		player_round = new ArrayList<Round>();
-		player_turn = new ArrayList<Turn>();
+		aRound = new Round();
+		player_round.add(aRound);
+		player_turn = aRound.getGameTurn();
 		chip = 50;
 	}
 	
@@ -33,10 +36,9 @@ public class SkunkPlayer
 		return chip;
 	}
 	
-	//want to store up round score? not really, maybe kitty score
 	public Round another_round()
 	{
-		Round aRound = new Round();
+		aRound = new Round();
 		player_round.add(aRound);
 		return aRound;
 	}
@@ -51,19 +53,13 @@ public class SkunkPlayer
 	
 	public int getRoundScore() 
 	{
-		for(int i=0; i<player_round.size();i++) {
-			roundScore += player_round.get(i).getRoundScore();
-		}
+		roundScore = 0;
+		roundScore += get_currentRound().getRoundScore();
 		return roundScore;
 	}
 	
 	//getters
 	public String getName() 
-	{
-		return player_name;
-	}
-
-	public String getPlayer_name()
 	{
 		return player_name;
 	}
@@ -96,12 +92,7 @@ public class SkunkPlayer
 	{
 		this.status = status;
 	}
-	
-	public void setWinningStatus(boolean winner) 
-	{
-		this.winner = winner;
-	}
-	
+		
 	public void setTurnScore(int turnScore)
 	{
 		this.turnScore = turnScore;
@@ -129,6 +120,12 @@ public class SkunkPlayer
 		return chip;
 	}
 	
+	public int getChip_test()
+	{	
+		chip = chipUpdate_test();
+		return chip;
+	}
+	
 	public int getTurnScore_test() 
 	{
 		if (player_turn.size()== 0) return 0;
@@ -139,9 +136,9 @@ public class SkunkPlayer
 	
 	public int getRoundScore_test() 
 	{
-		for(int i=0; i<player_round.size();i++) {
-			roundScore += player_round.get(i).getRoundScore_test();
-		}
+		roundScore=0;
+		roundScore += get_currentRound().getRoundScore_test();
 		return roundScore;
 	}
+	
 }

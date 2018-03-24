@@ -76,34 +76,9 @@ public class Game
 			{
 				winning_score = thePlayer.get(x).getRoundScore();
 				winner = thePlayer.get(x);
-				winner.setWinningStatus(true);
 			}
 		}
 		return winner;
-	}
-	
-	public int winning_score() 
-	{
-		SkunkPlayer winner = winner();
-		return winner.getRoundScore();
-	}
-
-	//first set current player's status as false, set the next player in the list as current player and set his status as true
-	//it wraps around after the last player
-	public SkunkPlayer switchPlayer() 
-	{
-		if(current_index + 1 == thePlayer.size()) {
-			current_player.setStatus(false); 
-			current_index = 0;
-			current_player = thePlayer.get(current_index);
-			current_player.setStatus(true);
-		}else {
-			current_player.setStatus(false);
-			current_index++;
-			current_player = thePlayer.get(current_index);
-			current_player.setStatus(true);
-		}	
-		return current_player;
 	}
 	
 	public void score_report() {
@@ -112,7 +87,7 @@ public class Game
 			System.out.println(thePlayer.get(i).getName() + "'s current score: " + thePlayer.get(i).getRoundScore()
 					+ ". Chip count: " + thePlayer.get(i).getChip());
 		}
-		System.out.println("The leading player is: " + winner().getName() + ", with " + winning_score() + " points!");
+		System.out.println("The leading player is: " + winner().getName() + ", with " + winner().getRoundScore() + " points!");
 		System.out.println("==========================================================");
 
 	}
@@ -130,7 +105,7 @@ public class Game
 		while(game) {
 			System.out.println(current_player.getName()+ ", do you want to make a roll? Enter \"1\" for yes or \"2\" for no.");
 			int to_roll = input.nextInt();
-			Roll aRoll = current_player.another_round().createTurn().createRoll();
+			Roll aRoll = current_player.get_currentRound().createTurn().createRoll();
 			while(to_roll==1) {
 				if(aRoll.checkDoubleSkunk()==true) {
 					System.out.println("You rolled: " + aRoll.toString() + ". You rolled a double skunk.");
@@ -140,7 +115,7 @@ public class Game
 					}else {
 						current_player = nextPlayer;
 						current_index++;
-						aRoll = current_player.another_round().createTurn().createRoll();
+						aRoll = current_player.get_currentRound().createTurn().createRoll();
 					}
 				}else if(aRoll.checkSkunk()==true) {
 					System.out.println("You rolled: " + aRoll.toString() + ". You rolled a skunk.");
@@ -150,21 +125,21 @@ public class Game
 					}else {
 						current_player = nextPlayer;
 						current_index++;
-						aRoll = current_player.another_round().createTurn().createRoll();
+						aRoll = current_player.get_currentRound().createTurn().createRoll();
 					}
 				}else {
 					System.out.println("You rolled: " + aRoll.toString());
 					System.out.println("Do you want to roll again?");
 					to_roll = input.nextInt();
 					if(to_roll==1) {
-						aRoll = current_player.getPlayer_turn().get((current_player.getPlayer_turn().size())-1).createRoll();
+						aRoll = current_player.another_round().createTurn().createRoll();
 					}else if(to_roll==2) {
 						if(current_index==thePlayer.size()-1) {
 							game=false;
 						}else
 							current_player = nextPlayer;
 							current_index++;
-							aRoll = current_player.another_round().createTurn().createRoll();
+							aRoll = current_player.get_currentRound().createTurn().createRoll();
 					}
 				}
 			}

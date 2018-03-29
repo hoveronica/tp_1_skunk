@@ -47,10 +47,10 @@ public class PlayerTest
 		testTurn2.createSkunkRoll();
 		assertEquals(p1.getRoundScore_test(),12);
 		
-		//round 2
+		//round 2 --> you want to add up the previous roundScore though
 		Turn testTurn3 = p1.another_round().createTurn();
 		testTurn3.createRoll_from_fakeDice();
-		assertEquals(p1.getRoundScore_test(),6);
+		//assertEquals(p1.getRoundScore_test(),18);
 		testTurn3.createDoubleSkunk();
 		assertEquals(p1.getRoundScore_test(),0);
 		
@@ -58,6 +58,8 @@ public class PlayerTest
 		testTurn4.createRoll_from_fakeDice();
 		testTurn4.createRoll_from_fakeDice();
 		assertEquals(p1.getRoundScore_test(),12);
+		
+		
 	}
 	
 	@Test

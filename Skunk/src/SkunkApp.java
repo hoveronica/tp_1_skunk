@@ -27,9 +27,7 @@ public class SkunkApp
 			System.out.println("INSTRUCTIONS.");
 			System.out.println("Game on!");
 		}
-		else if (read.equalsIgnoreCase("n"))
-			System.out.println("Game on!");
-		
+
 		//create players
 		//make it to 2-player game
 		do {
@@ -42,14 +40,15 @@ public class SkunkApp
 					num_of_player = input.nextInt();
 				}
 			}catch(InputMismatchException ex) {
-				System.out.println("You must put in a number! How many players are there in this game?");
-				num_of_player = input.nextInt();
+				System.out.println("You must put in a number!");
+				input.next();
 			}
 		}while(num_of_player<=1);
 		
 		aGame.addPlayer(num_of_player);
 		System.out.println("Let's get rolling!");
 		
+		aGame.first_round();
 		while(aGame.check_score()==false) {
 			aGame.one_round();
 		}

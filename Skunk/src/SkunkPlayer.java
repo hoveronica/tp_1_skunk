@@ -53,8 +53,10 @@ public class SkunkPlayer
 	
 	public int getRoundScore() 
 	{
-		roundScore = 0;
-		roundScore += get_currentRound().getRoundScore();
+		if(get_currentRound().get_currentTurn().isDoubleSkunk())
+			roundScore = 0;
+		else
+			roundScore += get_currentRound().getRoundScore();
 		return roundScore;
 	}
 	
@@ -66,6 +68,7 @@ public class SkunkPlayer
 
 	public Round get_currentRound()
 	{
+		roundScore = 0;
 		Round current_round = player_round.get(player_round.size()-1);
 		return current_round;
 	}
@@ -136,8 +139,10 @@ public class SkunkPlayer
 	
 	public int getRoundScore_test() 
 	{
-		roundScore=0;
-		roundScore += get_currentRound().getRoundScore_test();
+		if(get_currentRound().get_currentTurn().isDoubleSkunk())
+			roundScore = 0;
+		else
+			roundScore += get_currentRound().getRoundScore_test();
 		return roundScore;
 	}
 	

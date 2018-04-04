@@ -64,6 +64,11 @@ public class Game
 	{
 		this.current_player = current_player;
 	}
+	
+	public int getKitty() 
+	{
+		return kitty;
+	}
 
 	//compare all players and get winning player's name + score
 	public SkunkPlayer winner() 
@@ -86,6 +91,14 @@ public class Game
 		int score = 0;
 		score = winner().getRoundScore();
 		return score;
+	}
+	
+	public void kitty_distribution()
+	{
+		SkunkPlayer winner = winner();
+		int winner_chip = (thePlayer.size()-4)*5 + kitty + winner().getChip();
+		System.out.println(winner.getName() + " has " + winner_chip + " chips.");
+		
 	}
 	
 	public void score_report() {

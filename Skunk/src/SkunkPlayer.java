@@ -68,7 +68,6 @@ public class SkunkPlayer
 
 	public Round get_currentRound()
 	{
-		roundScore = 0;
 		Round current_round = player_round.get(player_round.size()-1);
 		return current_round;
 	}

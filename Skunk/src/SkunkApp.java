@@ -12,6 +12,7 @@ public class SkunkApp
 		Game aGame = new Game(playerList);
 		playerList = aGame.getThePlayer();
 		int num_of_player =	0;
+		int kitty = 0;
 	
 		//initiates scanner object
 		Scanner input = new Scanner(System.in);
@@ -54,6 +55,19 @@ public class SkunkApp
 		}
 		if(aGame.check_score()==true)
 			aGame.last_round();
+		aGame.kitty_distribution();
+		
+		System.out.println("Do you want another game? [Y/N]");
+		String game_on = input.next();
+		while(game_on.equalsIgnoreCase("Y")) {
+			aGame.first_round();
+			while(aGame.check_score()==false) {
+				aGame.one_round();
+			}
+			if(aGame.check_score()==true)
+				aGame.last_round();
+			kitty += aGame.getKitty();
+		}
 		
 		System.out.println("Thanks for playing skunk game! Hope you enjoyed the match!");
 	}

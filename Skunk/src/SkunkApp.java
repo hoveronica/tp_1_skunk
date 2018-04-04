@@ -36,6 +36,7 @@ public class SkunkApp
 					"\r\n" + "The first player to accumulate a total of 100 or more points can continue to score as many points over 100 as he believes is needed to win. When he decides to stop, \r\n"
 							+ "his total score is the \"goal.\" Each succeeding player receives one more chance to better the goal and end the game.\r\n" + 
 					"\r\n" + "The winner of each game collects all chips in \"kitty\" and in addition five chips from each losing player or 10 chips from any player without a score..\r\n");
+
 			System.out.println("Game on!\r\n");
 		}
 

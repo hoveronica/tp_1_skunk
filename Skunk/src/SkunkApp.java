@@ -64,6 +64,23 @@ public class SkunkApp
 		}
 		if(aGame.check_score()==true)
 			aGame.last_round();
+		aGame.kitty_distribution();
+		
+		System.out.println("Do you want another game?");
+		String game_on = input.next();
+		while(game_on.equalsIgnoreCase("Y")) 
+		{
+			aGame = new Game(playerList);
+			aGame.first_round();
+			while(aGame.check_score()==false) {
+				aGame.one_round();
+			}
+			if(aGame.check_score()==true)
+				aGame.last_round();
+			aGame.kitty_distribution();
+			System.out.println("Do you want another game?");
+			game_on = input.next();
+		}
 		
 		System.out.println("Thanks for playing skunk game! Hope you enjoyed the match!");
 	}

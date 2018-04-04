@@ -203,9 +203,7 @@ public class Game
 			System.out.println(current_player.getName()+ ", do you want to make a roll? Enter \"1\" for yes or \"2\" for no.");
 			int to_roll = input.nextInt();
 			Roll aRoll = current_player.another_round().createTurn().createRoll();
-			if(to_roll==2) {
-				
-			}
+			
 			while(to_roll==1) {
 				if(aRoll.checkDoubleSkunk()==true) {
 					System.out.println("You rolled: " + aRoll.toString() + ". You rolled a double skunk.");
@@ -265,6 +263,7 @@ public class Game
 				System.out.println(current_player.getName()+ ", do you want to make a roll? Enter \"1\" for yes or \"2\" for no.");
 				int to_roll = input.nextInt();
 				Roll aRoll = current_player.get_currentRound().createTurn().createRoll();
+				
 				while(to_roll==1) {
 					if(aRoll.checkDoubleSkunk()==true) {
 						System.out.println("You rolled: " + aRoll.toString() + ". You rolled a double skunk.");

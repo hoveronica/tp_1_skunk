@@ -64,11 +64,6 @@ public class Game
 	{
 		this.current_player = current_player;
 	}
-	
-	public int getKitty() 
-	{
-		return kitty;
-	}
 
 	//compare all players and get winning player's name + score
 	public SkunkPlayer winner() 

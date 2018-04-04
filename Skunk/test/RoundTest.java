@@ -45,12 +45,9 @@ public class RoundTest
 		Turn testTurn5 = testRound.createTurn();
 		testTurn5.createRoll_from_fakeDice();
 		testTurn5.createRoll_from_fakeDice();
-		//assertEquals(testRound.getRoundScore_test(),18);
+		assertEquals(testRound.getRoundScore_test(),18);
 	}
 
-	/*
-	 * Round not updating right yet. If skunk, round score does not void the current turn. It adds to round score. 
-	 */
 	@Test
 	public void test_getRoundScore_skunkInFirstTurn()
 	{

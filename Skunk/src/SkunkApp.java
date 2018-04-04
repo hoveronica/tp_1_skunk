@@ -40,8 +40,6 @@ public class SkunkApp
 			System.out.println("Game on!\r\n");
 		}
 
-		//create players
-		//make it to 2-player game
 		do {
 			try {
 				System.out.println("How many players are there in this game?");
